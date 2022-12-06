@@ -4411,7 +4411,7 @@ textarea.form-control-lg {
   color: #fff;
 }
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-  color: #fff;
+  color: #ff;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.55);
@@ -11123,13 +11123,13 @@ blockquote {
     background: transparent;
   }
   #mainNav .navbar-brand {
-    color: #fff;
+    color: ;
   }
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
     color: rgba(255, 255, 255, 0.8);
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
-    color: #fff;
+    color: ;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
     color: rgba(255, 255, 255, 0.8);
@@ -11199,7 +11199,7 @@ header.masthead:before {
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  color: #fffb;
+  color: ;
 }
 header.masthead .page-heading,
 header.masthead .site-heading {
