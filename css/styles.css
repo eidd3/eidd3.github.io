@@ -11004,23 +11004,6 @@ fuente{
     font-family: 'Lobster', cursive;
 }
 
-#particles-js {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-}
-
-ul.navega li {
-  display: inline;
-  padding-right: 1.3em;
-}
-
-hr {
-  background-color: #dee2e6;
-  opacity: 1;
-}
-
 .icon-bar {
     width: 20%;
     text-align: center;
