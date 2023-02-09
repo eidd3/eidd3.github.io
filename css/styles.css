@@ -11075,21 +11075,6 @@ blockquote {
   color: #6c757d;
 }
 
-body {
-  background-color: #f1f1f1;
-  color: #333;
-}
-
-#toggle-dark-mode {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-}
-
-.dark-mode {
-  background-color: #333;
-  color: #f1f1f1;
-}
 
 #mainNav {
   position: absolute;
