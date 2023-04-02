@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/x-icon" href="assets/SQL.png" /><title>From SQL Injection to Shell</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body style="background-color: #E5E8E8"><article id="b0243904-c939-491f-a921-a285bd5f7e8e" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">💉</span></div><h1 class="page-title">From SQL Injection to Shell</h1></header><div class="page-body"><p id="4d60872a-e134-4b40-8826-60769fe751df" class="">@<a href="https://www.vulnhub.com/entry/pentester-lab-from-sql-injection-to-shell,80/">https://www.vulnhub.com/entry/pentester-lab-from-sql-injection-to-shell,80/</a></p><p id="2491b4b9-9d0b-4c3d-9768-99c8328937ea" class="">
+</p><hr id="17c20a83-9d43-4d67-9b48-cde8130944f1"/><h3 id="14fd4f0e-404c-4289-beda-845dd87659a2" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="36f51df8-8078-47d9-8d44-4875a49d52b3" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="0596d710-5c75-4def-88a4-a360a5c7061b" class="code code-wrap"><code>nmap 192.168.1.29
+Nmap scan report for 192.168.1.29
+Host is up (0.0011s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http</code></pre><ul id="08c839b2-855b-4b12-a7e4-1e2321206729" class="bulleted-list"><li style="list-style-type:disc">22/tcp open ssh OpenSSH 5.5p1 Debian 6+squeeze2 (protocol 2.0)</li></ul><ul id="e77d9491-b98f-433d-a34b-27f30e195142" class="bulleted-list"><li style="list-style-type:disc">80/tcp open http Apache httpd 2.2.16 ((Debian))</li></ul><p id="7f003812-a8c3-4c9c-8b0a-d636d6f1b0ff" class="">
+</p><blockquote id="57c3d077-0b20-4dc2-a5f5-0ab6d22f7d95" class=""><em>El puerto 22 es vulnerable a user enumeration pero, obviamente no es la idea del laboratorio, por lo que seguimos.</em></blockquote><figure id="1346fef1-7b5e-4b66-9aef-cdaaeaeacc43" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled.png"><img style="width:864px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled.png"/></a><figcaption>Página web alojada en el puerto 80.</figcaption></figure><p id="70d14a62-6620-47c5-90ff-c97d8ba37471" class="">
+</p><p id="69faf3ce-b257-43e8-af08-86b9981bf19b" class="">La web es sencilla y no tiene mucho contenido. </p><table id="71315094-f87d-4106-81c0-76215f2300bc" class="simple-table"><tbody><tr id="bb7fdc1f-09d0-4d3e-a522-3faf7d4a83d4"><td id="SoEL" class="block-color-gray" style="width:120.4921875px">Home</td><td id="?fXi" class="block-color-gray" style="width:604.4921875px">Página principal y muestra la ultima foto que se publico</td></tr><tr id="30356b24-a2f1-42ba-93fc-407a23efa32b"><td id="SoEL" class="" style="width:120.4921875px">test</td><td id="?fXi" class="" style="width:604.4921875px">Muestra la foto “ruby” y “cthulhu”</td></tr><tr id="b3a8b592-7ce5-4fcb-9efc-dec9d95194e3"><td id="SoEL" class="" style="width:120.4921875px">ruxcon</td><td id="?fXi" class="" style="width:604.4921875px">Muestra la foto “hacker”</td></tr><tr id="f83ee998-cf07-45eb-b8dc-1a6968bcc337"><td id="SoEL" class="" style="width:120.4921875px">2010</td><td id="?fXi" class="" style="width:604.4921875px">Sin contenido</td></tr><tr id="df99336a-285f-42ef-9738-27cf8f0981f4"><td id="SoEL" class="" style="width:120.4921875px">All pictures</td><td id="?fXi" class="" style="width:604.4921875px">Muestra todas las fotos</td></tr><tr id="0f3fb6e8-20b6-4e28-ba83-4b5cd8089bc6"><td id="SoEL" class="" style="width:120.4921875px">Admin</td><td id="?fXi" class="" style="width:604.4921875px">Panel de autenticación  </td></tr></tbody></table><p id="8eba55d6-5f48-4189-8370-32902abe6e28" class="">
+</p><blockquote id="5e7bcadc-7ed3-41ee-80ea-2323e869dfa6" class="">Si en el panel de autenticación ponemos ‘ad’, se muestran algunas opciones. No estoy seguro si esto es a propósito para despistar, pero la SQLi no se da a través de este panel.</blockquote><p id="28c8339e-4d17-437b-8a06-73119176fb1e" class="">
+</p><figure id="a90b74d4-3868-4755-90fe-c50e27fad101" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%201.png"><img style="width:560px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%201.png"/></a></figure><p id="761f8fbb-bb15-454e-8cc7-11b0946839be" class="">
+</p><p id="13ad7a52-4977-499d-b622-2615852aac29" class="">Tanto “test” como “ruxcon” y “2010” tienen un parámetro en la URL que filtra por ID.</p><figure id="60ab6659-2e16-4a69-9600-8d19d435916e" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%202.png"><img style="width:350px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%202.png"/></a></figure><p id="eff99fb9-45da-485f-8953-9812af5876ed" class="">En este caso, comienzo probando cosas en “test”, que es <code>id=1</code>. Si comenzamos a probar cosas en el id, como una comilla simple, nos devuelve un error de SQL y podemos ver el error en la respuesta.</p><figure id="ad494d3c-05a2-4330-b52f-4495ff69f344" class="image"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%203.png"><img style="width:672px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%203.png"/></a></figure><p id="a69cf661-6ba5-463f-9936-b9f82972e2a8" class="">La descripción de la máquina ya nos da una idea de que se trata de una inyección SQL, así que con un <code>order by 10 -- -</code> comenzamos a tratar de adivinar el número de columnas que nos devuelve la consulta. </p><figure id="c79d539a-90a3-41d0-8ec0-499ae7816316" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%204.png"><img style="width:672px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%204.png"/></a></figure><p id="073a9d46-c246-42c4-8fe3-ceaa1439cb0d" class="">Dice “<em>Unknown column ‘10’ in ‘order clause’ </em>” esto es buena señal para seguir probando hasta que coincida con el número de columnas y que la respuesta ya no dé error.</p><p id="206b5aad-94f2-47f3-85db-5cfe5301defb" class="">Seguí probando hasta llegar al 4 y la respuesta ya no dio error, por lo que pudimos determinar el número de columnas y ahora con un “union select”, podemos comenzar a combinar datos de otras tablas.</p><figure id="6ab039b0-e689-40fa-bba1-3f77bbb10fee" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%205.png"><img style="width:672px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%205.png"/></a></figure><p id="502ac748-4938-4f4e-aa3d-d6f220ccd121" class="">Al aplicar el “UNION” attack, podemos ver el número 2 representado en la web, por lo que en ese campo podríamos empezar a sacar información. Podemos probar ver el usuario con <code>union select 1,user(),3,4-- -</code> , saber la versión de la base de datos <code>union select 1,version(),3,4-- -</code> o saber la base de datos en uso <code>union select 1,database(),3,4-- -</code> .</p><figure id="70e3401b-f8b5-46c8-968d-cf70f36850dd" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%206.png"><img style="width:695px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%206.png"/></a></figure><p id="589b1168-bafe-4091-bb90-6d8ca4305e23" class="">
+</p><figure id="69eea916-3da1-4c92-9e86-f85493ba0056" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%207.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%207.png"/></a><figcaption>Usuario</figcaption></figure><figure id="865cf9d7-d15b-43a4-aafb-09ffb386f78c" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%208.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%208.png"/></a><figcaption>Versión de la base de datos</figcaption></figure><figure id="e564472c-ba4c-49af-adce-212690f39294" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%209.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%209.png"/></a><figcaption>Base de datos en uso</figcaption></figure><p id="e1c2e7c9-eb8d-4794-a3e5-6071bbbd3e7a" class="">
+</p><p id="2b311acb-f392-4394-947c-d8e9687e8d7d" class="">Enumeramos las bases de datos existentes.</p><pre id="078e3ee8-5b8a-4ab8-a5f7-8faf014e143e" class="code code-wrap"><code>1 union select 1,group_concat(schema_name),3,4 from information_schema.schemata-- -</code></pre><figure id="7a394685-9ed8-4947-8533-25e3a9b3fad1" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2010.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2010.png"/></a></figure><p id="641c4687-f046-4863-8f86-240658f881fb" class="">Como habíamos visto antes, existen “photoblog” e “information_schema”.</p><p id="422fd6bc-d2d5-405b-8d85-2788712d9bab" class="">Enumeramos las tablas existentes en la base de datos “photoblog”.</p><pre id="99b8afa1-28fa-4ccb-91fd-59cef024e0f2" class="code code-wrap"><code>1 union select 1,group_concat(table_name),3,4 from information_schema.tables where table_schema=&quot;photoblog&quot;-- -</code></pre><figure id="e1be8a1c-0756-4d21-b079-207b65b90c2a" class="image"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2011.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2011.png"/></a></figure><p id="a03e25f6-e332-412c-b59b-d49d9f4087c8" class="">Vamos a ver las columnas de la tabla “users”.</p><pre id="99622d7b-263f-4915-9a89-640e2665f288" class="code code-wrap"><code>1 union select 1,group_concat(column_name),3,4 from information_schema.columns where table_schema=&quot;photoblog&quot; and table_name=&quot;users&quot;-- -</code></pre><figure id="d796f91f-983d-4941-9303-98078f88e2a6" class="image"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2012.png"><img style="width:576px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2012.png"/></a></figure><p id="d6ccd8f5-748d-4add-a713-752a6ec127c4" class="">Sabiendo los nombres de las columnas podríamos extraer toda la información con la siguiente consulta.</p><pre id="3f7812e0-95d6-4863-bf46-f5ec6750c27f" class="code code-wrap"><code>1 union select 1,group_concat(login,&#x27;:&#x27;,password),3,4 from photoblog.users-- -</code></pre><figure id="dec893d6-fdf2-4ef0-ab96-d13d26d4ff8b" class="image"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2013.png"><img style="width:634px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2013.png"/></a></figure><p id="b8e57b3f-0c25-46d8-bf01-d3daf976f286" class="">Pasamos el hash por CrackStation y obtenemos la contraseña del administrador.</p><figure id="326b6c5b-b7ab-4e88-81e6-48aa43089da6" class="image"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2014.png"><img style="width:816px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2014.png"/></a></figure><p id="5fbcd5a7-983e-435a-868e-c28347e8569f" class="">Ingresamos y tenemos un panel para agregar o quitar fotos. </p><p id="47b6aa70-d882-406c-8d54-394934911720" class="">La idea ahora es poder ejecutar comandos en la máquina. </p><figure id="e0ddb21d-8f2d-4a98-a29f-c6255c61042e" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2015.png"><img style="width:864px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2015.png"/></a></figure><p id="562bab40-70b3-47f8-b29f-568c0528b2e1" class="">Si intentamos subir una reverse shell, sale un mensaje que no admite archivos PHP.</p><figure id="57d95654-12f2-49a2-aa2f-49d3d88df43a" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2016.png"><img style="width:288px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2016.png"/></a></figure><figure id="2996ae30-075f-4184-a96c-5eb2a2b45f93" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2017.png"><img style="width:288px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2017.png"/></a></figure><p id="ab4ba2a4-d5d4-4e6a-8934-4086ea54701a" class="">Probando distintas extensiones como “php-reverse-shell.<code>php2</code>&quot; o “php-reverse-shell.<code>php.jpg</code>&quot; ,no funcionaban hasta que probé <code>.php3</code> y sí se ejecutó el código, dándome una shell, y a partir de ahí ya podía ejecutar comandos en el sistema.</p><p id="f3684a4a-b96d-4126-84c0-24cb1c388549" class="">
+</p><figure id="c6e3dfd3-d660-4ae8-b7fb-bf111b3b18e9" class="image" style="text-align:center"><a href="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2018.png"><img style="width:288px" src="From%20SQL%20Injection%20to%20Shell%20b0243904c939491fa921a285bd5f7e8e/Untitled%2018.png"/></a></figure><p id="5ee728c6-fa41-42eb-935b-005e91eed2d5" class="">
+</p></div></article></body></html>
