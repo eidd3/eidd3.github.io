@@ -1,9 +1,9 @@
-title: Hacker-Blog
-description: "A Jekyll Blog Theme For Hackers"
+title: eidd3.github.io
+description: "Posts"
 author:
   name: "Eddie"
   email: " "
-  url: "https://github.com/eidd3/eidd3.github.io"
+  url: "https://eidd3.github.io"
 
 baseurl: /
 
