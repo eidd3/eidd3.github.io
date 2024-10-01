@@ -5,7 +5,7 @@ published: true
 
 ---
 
-Laboratorio de [-](https://) 
+> Laboratorio creado por [julian911015/](https://www.linkedin.com/in/julian911015/) 
 
 ### Enumeración
 
