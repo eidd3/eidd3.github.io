@@ -1,6 +1,6 @@
 ---
 title: HackMyVm - Random & Noob (Pivoting)
-published: false
+published: true
 ---
 
 ---
@@ -15,7 +15,7 @@ Con **netdiscover** escaneo la red para identificar dispositivos activos y saber
 sudo netdiscover -i eth0 -r 192.168.1.0/24
 ```
 
-![](https://eidd3.github.io/assets/img/randomnoob/filerandom.png)
+![](https://eidd3.github.io/assets/img/randomnoob/gif.gif)
 
 Con **nmap** escaneo los puertos para saber que servicios tiene la máquina.
 
