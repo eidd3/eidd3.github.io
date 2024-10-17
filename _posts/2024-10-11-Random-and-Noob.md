@@ -1,6 +1,6 @@
 ---
 title: HackMyVm - Random & Noob (Pivoting)
-published: false
+published: true
 ---
 
 ---
@@ -15,13 +15,13 @@ Con **netdiscover** escaneo la red para identificar dispositivos activos y saber
 sudo netdiscover -i eth0 -r 192.168.1.0/24
 ```
 
-![](https://eidd3.github.io/assets/img/randomnoob/gif.gif)
+![](https://eidd3.github.io/assets/img/randomnoob/netdiscover.png)
 
 Con **nmap** escaneo los puertos para saber que servicios tiene la máquina.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/nmao.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/nmapscan.png)
 
 * Puerto 80 - HTPP
 * Puerto 22 - SSH
@@ -29,37 +29,37 @@ Con **nmap** escaneo los puertos para saber que servicios tiene la máquina.
 
 Para un escaneo rapido de la web lanzo el script _http-enum_ de nmap para descubrir algunas rutas o archivos.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/httpenum.png)
 
 Pero no muestra ningun resultado.
 
 trato de conectarme por **FTP** con el usuario _anonymous_ y sin contraseña y me deja pero no puedo ingresar al directorio **html**.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/ftp.png)
 
 y si intento descargar el contenido creo que tampoco tengo los permisos para hacerlo.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/ftpdown.png)
 
 La página web muestra un mensaje y 2 nombres de usuarios.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/web80.png)
 
 con **Hydra** intento fuerza bruta sobre el usuario **eleanor** para saber la contraseña.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/ftppass.png)
 
 Y la encuentra `eleanor:ladybug`
 
 Si ahora intento descargar el contenido de el directorio **html** si me deja.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/ftpdownloaded.png)
 
 Y parece que la página web esta conectada con el servicio **FTP**.
 
 Hago la prueba de tratar de subir un archivo.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/putfile.png)
 
 Pero no me deja.
 
@@ -67,9 +67,9 @@ Desde aca probe fuerza bruta por ssh al usuario **alan**, enumerar la web buscan
 
 Con la herramienta **sftp** intente subir un archivos y si me dejo.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/sftp.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/testtxt.png)
 
 > stfp es un programa de transferencia de archivos similar a ftp, el cual realiza todas las opreaciones a través de un transporte ssh cifrado.
 
@@ -77,13 +77,13 @@ Se ve que **FTP** tiene restringido los permisos de escritura o alguna configura
 
 Ahora cree el tipico on-liner en **PHP** para usar una web shell en la página y lo subi.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/webshell.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/wwwdata.png)
 
 Teniendo ejecucion de comandos, entablo una reverse shell.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/)
 
 ### www-data
 
@@ -94,7 +94,7 @@ El usuario **eleanor** no tenia acceso por ssh desde afuera, pero si pruebo desd
 
 Para elevar mis privilegios a root enumero los archivos que puedo ejecutar con los permisos del propietario.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/perm4000.png)
 
 Y el usuario **root** tiene un archivo ejecutable en el directorio de **alan**.
 Si veo el resto de los archivos hay una **note.txt** que no puedo leer, un archivo de texto **root.h** que contiene: 
@@ -123,13 +123,13 @@ Parece que la funcion `makemeroot` no esta implementada.
 
 Si miro el archivo con _file_ veo que es un binario ejecutable de 64 bits, que al ejecutarlo se hace bajo el contexto de los privilegios del propietario y el grupo (root), ya que tiene **setuid** y **setgid** activos y que esta vinculado a librerias compartidas.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/filerandom.png)
 
 Esto ultimo lo hace vulnerable a **Library Hijacking**, ya que si se puede modificar desde que ruta carga las librerias se puede crear un codigo malicioso para que cuando se ejecute el programa como root, le cambie los permisos a la **bash** por ejemplo.
 
 Si miro las librerias compartidas con **ldd**, veo que hace uso de _librooter.so_ y lo carga desde _/lib/librooter.so_ 
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/lddrandom.png)
 
 Para cambiar el orden de carga, tengo que ver si tengo permisos de escritura en **/etc/ld.so.conf.d** que es el directorio que contiene los archivos de configuracion para establecer la ruta de carga de las librerias.
 
@@ -156,9 +156,9 @@ void makemeroot()
 /usr/bin/gcc -shared exploit.c -o librooter.so
 ```
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/gcccompiled.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/gif)
 
 >Para que se aplique el cambio a la bash tenia que ejecutar el binario con un numero hasta que se iguale al random, pero justo fue el 1 y no mostro el error de "Wrong number" xd 
 
@@ -166,7 +166,7 @@ void makemeroot()
 
 Si veo todas las ip asociadas al host veo una interfaz en la subred 10.10.0.0/24.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/hostname-i.png)
 
 Para enumerar hosts dentro de esa subred puedo crear un script de bash.
 
@@ -185,7 +185,7 @@ Y el host con **IP 10.10.0.130** está activa.
 
 Ahora para ver puertos abiertos, como la máquina no tiene **nmap** hago un one-liner de bash enumerar puertos abiertos.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/openports.png)
 
 * Puerto 22 
 * Puerto 65530 
@@ -198,7 +198,7 @@ Para poder hacer un escaneo de esos puertos para ver informacion detallada uso [
 
 Para eso primero paso la herramienta **chisel** a la máquina **Random**.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/gif)
 
 ### Remote port forwarding
 
@@ -222,11 +222,11 @@ root@random:~# ./chisel client 192.168.1.34:1234 R:22:10.10.0.130:22
 
 Con esto estaria haciendo que mi puerto **22** (**192.168.1.34**) se convierta en el puerto **22** de la máquina **Noob** (**10.10.0.130**) a través de la maquina **Random** que actua como un intermediario.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/noob/asdasd.png)
 
 Y lo mismo con el **65530**
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/chisel65530.png)
 
 Pero hacer la conexion puerto por puerto en caso de que sean varios puede ser tedioso.
 
@@ -253,15 +253,15 @@ root@random:~# ./chisel client 192.168.1.34:1234 R:socks
 
 Ahora que tengo conectividad a traves del tunel creado, para poder interactuar con los puertos de la maquina **Noob** tengo que configurar las herramientas para poder hacerlo como **proxychains** para poder usar **nmap** y **foxy proxy** para poder acceder desde navegador.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/foxyproxy.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/chiselallports.png)
 
 ### Noob
 
 Con un escaneo a la web existe un archivo _index_ y un directorio _nt4share_.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/n.png)
 
 Parece que es el directorio personal del usuario **nt4share**, y lo interesante es el directorio **.ssh**.
 
@@ -275,11 +275,11 @@ Me descargo `id_rsa` que es la clave privada y accedo por ssh.
 
 Para elevar privilegios hay que crear un enlace simbolico que apunte al directorio /root y que va a poder ser accesible de la misma manera que el anterior, por la web.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/enlacesimbolico.png)
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/rootweb.png)
 
 Y ahora el mismo metodo anterior, descargar la id_rsa de root y acceder por ssh.
 
-![](https://eidd3.github.io/assets/img/)
+![](https://eidd3.github.io/assets/img/randomnoob/noob/rootuser.png)
 
