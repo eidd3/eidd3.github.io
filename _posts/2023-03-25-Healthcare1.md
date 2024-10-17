@@ -1,5 +1,5 @@
 ---
-title: Healthcare1
+title: VulnHub - Healthcare1
 published: true
 ---
 

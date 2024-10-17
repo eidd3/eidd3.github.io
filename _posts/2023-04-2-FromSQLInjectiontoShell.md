@@ -1,5 +1,5 @@
 ---
-title: From SQl Injecion to Shell
+title: VulnHub - From SQl Injecion to Shell
 published: true
 ---
 

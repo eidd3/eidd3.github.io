@@ -1,5 +1,5 @@
 ---
-title: LemonSqueezy
+title: VulnHub - LemonSqueezy
 published: true
 ---
 
