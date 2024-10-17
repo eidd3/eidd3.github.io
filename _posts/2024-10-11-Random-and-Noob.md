@@ -1,6 +1,6 @@
 ---
 title: HackMyVm - Random & Noob (Pivoting)
-published: false
+published: true
 ---
 
 ---
