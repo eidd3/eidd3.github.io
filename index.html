@@ -232,48 +232,23 @@
 </div>
 <script>
 /* ================================================================
-   POSTS
-   Para agregar un writeup nuevo:
-     1. Copiás el bloque del TEMPLATE (id 3) al final del array
-     2. Cambiás el id, title, platform, difficulty, date, excerpt, tags y content
-     3. Guardás y hacés git push
-   El campo `content` acepta Markdown completo.
 ================================================================ */
 const POSTS = [
 
-  // ── TEMPLATE — copiá este bloque para cada writeup nuevo ────
-  // {
   //   id: 3,
-  //   title:      "Nombre de la Máquina",
-  //   platform:   "HackTheBox",       // HackTheBox | TryHackMe | CTF
-  //   difficulty: "medium",           // easy | medium | hard | insane
+  //   title:      "",
+  //   platform:   "",       // HackTheBox | TryHackMe | CTF
+  //   difficulty: "",           // easy | medium | hard | insane
   //   date:       "2025-03-17",
-  //   excerpt:    "Descripción corta que aparece en la lista.",
+  //   excerpt:    "",
   //   tags:       ["web", "sqli"],
   //   content: `
-  // ## Overview
-  // Descripción general.
   //
-  // ## Enumeración
-  // \`\`\`bash
-  // nmap -sC -sV 10.10.11.XX
-  // \`\`\`
-  //
-  // ## Foothold
-  // Acceso inicial.
-  //
-  
-// ## Privilege Escalation
-  // Path hasta root.
-  //
-  // <div class="flag-block"><span>root.txt</span>HTB{...}</div>
-  // `
-  // },
 
 ];
 
 /* ================================================================
-   ENGINE — no tocar
+   ENGINE
 ================================================================ */
 function diffClass(d) {
   return { easy:'diff-easy', medium:'diff-medium', hard:'diff-hard', insane:'diff-insane' }[d] || 'diff-easy';
