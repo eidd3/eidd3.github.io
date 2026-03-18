@@ -234,24 +234,30 @@
 ================================================================ */
 const POSTS = [
 
-  {
-    id: 4,
-    title:      "UltraTech",
-    platform:   "TryHackMe",       // HackTheBox | TryHackMe | CTF
-    difficulty: "easy",           // easy | medium | hard | insane
-    date:       "2025-01-11",
-    excerpt:    "",
-    tags:       ["web", "sqli"],
-    content: `
-## Reconocimiento Inicial
+{
+   id: 3,
+   title:      "Nombre de la Máquina",
+   platform:   "HackTheBox",       // HackTheBox | TryHackMe | CTF
+   difficulty: "medium",           // easy | medium | hard | insane
+   date:       "2025-03-17",
+   excerpt:    "Descripción corta que aparece en la lista.",
+   tags:       ["web", "sqli"],
+   content: `
+## Overview
+Descripción general.
 
-Se realiza un escaneo de puertos con **nmap** para identificar los servicios activos en la máquina objetivo (10.10.15.224):
+## Enumeración
+\`\`\`bash
+nmap -sC -sV 10.10.11.XX
+\`\`\`
 
-```bash
-nmap -sS -p- --open --min-rate 2000 -n -Pn 10.10.15.224
-```
+## Foothold
+Acceso inicial.
 
+## Privilege Escalation
+Path hasta root.
 
+<div class="flag-block"><span>root.txt</span>HTB{...}</div>
 `
 },
 
